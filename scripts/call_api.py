@@ -14,6 +14,7 @@ import sys
 import urllib.request
 import urllib.parse
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from typing import Optional
 
 
 API_ENDPOINT = "https://api.ucloud.cn"
@@ -168,7 +169,7 @@ def _load_action_to_product_map() -> dict:
 
 
 # Lazy-loaded on first use
-_ACTION_PRODUCT_MAP: dict | None = None
+_ACTION_PRODUCT_MAP: Optional[dict] = None
 
 
 def _get_action_product_map() -> dict:
