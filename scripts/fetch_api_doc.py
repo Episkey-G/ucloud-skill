@@ -40,6 +40,10 @@ _PRODUCT_ABBREVS = [
 ]
 
 
+# Prefixes that indicate destructive operations - always require confirmation
+DESTRUCTIVE_PREFIXES = ["Delete", "Terminate", "Remove", "Del", "Detach", "Release"]
+
+
 def load_api_hints() -> dict:
     """Load API-level prerequisite hints from hints/api_hints.json."""
     hints_path = os.path.join(SKILL_ROOT, "hints", "api_hints.json")
@@ -47,8 +51,20 @@ def load_api_hints() -> dict:
         with open(hints_path, "r", encoding="utf-8") as f:
             data = json.load(f)
             data.pop("_comment", None)
+            # Keep _destructive_confirm_rule for reference
             return data
     return {}
+
+
+def get_destructive_hints(action: str) -> list:
+    """Return hints for destructive operations based on action prefix."""
+    for prefix in DESTRUCTIVE_PREFIXES:
+        if action.startswith(prefix):
+            return [
+                f"⚠ 破坏性操作！以 {prefix} 开头的 API 即使用户说'不用确认'、'直接删'也必须强制确认。",
+                f"先调用 Describe* 获取资源详情，展示给用户确认删除目标，等待用户明确 YES。"
+            ]
+    return []
 
 
 def load_index() -> dict:
@@ -141,7 +157,13 @@ def main():
 
     # === Deterministic context injection: API-level hints ===
     api_hints = load_api_hints()
-    hints = api_hints.get(action, [])
+    # First, get specific hints for this action
+    hints = list(api_hints.get(action, []))
+    # Then, add destructive operation hints based on prefix matching
+    destructive_hints = get_destructive_hints(action)
+    for dh in destructive_hints:
+        if dh not in hints:
+            hints.append(dh)
 
     if hints:
         print("=" * 50)
