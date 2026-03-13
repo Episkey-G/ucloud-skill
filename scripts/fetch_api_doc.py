@@ -40,15 +40,43 @@ _PRODUCT_ABBREVS = [
 ]
 
 
+# API action prefix classification (CRUD)
+# fmt: off
+DELETE_PREFIXES = [
+    "Terminate", "Remove", "Unpublish", "Cancel", "Abort", "Del",
+    "Unassign", "Release", "Destroy", "Delete",
+]
+# fmt: on
+
+
 def load_api_hints() -> dict:
     """Load API-level prerequisite hints from hints/api_hints.json."""
     hints_path = os.path.join(SKILL_ROOT, "hints", "api_hints.json")
     if os.path.exists(hints_path):
         with open(hints_path, "r", encoding="utf-8") as f:
             data = json.load(f)
-            data.pop("_comment", None)
+            # Remove metadata keys
+            for k in list(data):
+                if k.startswith("_"):
+                    data.pop(k)
             return data
     return {}
+
+
+def is_delete_action(action: str) -> bool:
+    """Check if an action is a delete operation based on its prefix."""
+    return any(action.startswith(p) for p in DELETE_PREFIXES)
+
+
+def get_destructive_hints(action: str) -> list:
+    """Return forced-confirmation hints for delete operations."""
+    for prefix in DELETE_PREFIXES:
+        if action.startswith(prefix):
+            return [
+                f"🚨 破坏性操作（{prefix}*）！此操作不可逆，即使用户明确说'不用确认'也必须强制确认。",
+                "执行前必须：1) 调用 Describe* 获取资源详情 → 2) 展示给用户 → 3) 等待用户明确回复 YES。"
+            ]
+    return []
 
 
 def load_index() -> dict:
@@ -141,7 +169,13 @@ def main():
 
     # === Deterministic context injection: API-level hints ===
     api_hints = load_api_hints()
-    hints = api_hints.get(action, [])
+    # First, get specific hints for this action
+    hints = list(api_hints.get(action, []))
+    # Then, add destructive operation hints based on prefix matching
+    destructive_hints = get_destructive_hints(action)
+    for dh in destructive_hints:
+        if dh not in hints:
+            hints.append(dh)
 
     if hints:
         print("=" * 50)

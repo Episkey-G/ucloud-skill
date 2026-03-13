@@ -22,10 +22,6 @@
     "前置状态：主机必须处于 Stopped 状态。先调用 DescribeUHostInstance 检查 State，如果是 Running 则需先执行 StopUHostInstance。",
     "Password 需 base64 编码。"
   ],
-  "TerminateUHostInstance": [
-    "⚠ 不可逆操作！必须先向用户确认。",
-    "先调用 DescribeUHostInstance 获取主机详情，展示给用户确认删除目标。"
-  ],
   "CreateUDBInstance": [
     "必须先调用 DescribeUDBParamGroup 获取 ParamGroupId（必填参数）。",
     "必须先调用 DescribeUDBType 获取可用数据库引擎和版本。",

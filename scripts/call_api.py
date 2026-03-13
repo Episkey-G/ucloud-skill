@@ -19,6 +19,14 @@ from typing import Optional
 
 API_ENDPOINT = "https://api.ucloud.cn"
 
+# Delete-class prefixes — any action starting with these requires forced confirmation
+# fmt: off
+DELETE_PREFIXES = [
+    "Terminate", "Remove", "Unpublish", "Cancel", "Abort", "Del",
+    "Unassign", "Release", "Destroy", "Delete",
+]
+# fmt: on
+
 # Common error codes with actionable hints.
 # For product-specific codes, we generate a GitHub doc link.
 COMMON_ERROR_HINTS = {
@@ -376,6 +384,15 @@ def main():
         sys.exit(1)
 
     action = sys.argv[1]
+
+    # Safety gate: warn on delete-class operations
+    if any(action.startswith(p) for p in DELETE_PREFIXES):
+        print(f"\n{'='*50}")
+        print(f"[Safety] {action} 是破坏性操作（不可逆）。")
+        print(f"  即使用户说'不用确认'，也必须先展示资源详情并获得用户明确 YES。")
+        print(f"  如果尚未确认，请立即中止并先向用户确认。")
+        print(f"{'='*50}\n")
+
     try:
         params = json.loads(sys.argv[2])
     except json.JSONDecodeError as e:
