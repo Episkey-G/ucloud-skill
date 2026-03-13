@@ -1,0 +1,70 @@
+{
+  "_comment": "API级前置操作提示。fetch_api_doc.py 输出参数前自动注入。Key 为 Action 名称。",
+  "CreateUHostInstance": [
+    "必须先调用 DescribeAvailableInstanceTypes 获取可用机型（MachineType）和支持的磁盘类型。",
+    "必须先调用 DescribeImage 获取镜像列表，选择 ImageId。",
+    "Disks 是必填数组：至少包含一个 IsBoot=True 的系统盘，每个盘需要 Type 和 Size。",
+    "LoginMode 为 Password 时，密码需 base64 编码，可用 gen_password.py 生成。",
+    "⚡ 快速创建（用户要求'最便宜/最小/默认/随便开一台'时）：禁止价格查询和比价重试，直接使用默认值 → MachineType=O, CPU=1, Memory=1024, Disks=[{IsBoot:True,Type:CLOUD_SSD,Size:20}], ChargeType=Dynamic（按量付费）, Quantity=0（按量模式下表示按需、不限时长）。",
+    "⚡ 快速创建仍需最小活体验证：DescribeImage 查询 ImageId，DescribeAvailableInstanceTypes 只调用一次，用于校验 Zone、MachineType 和系统盘类型兼容性。",
+    "⚡ 快速创建必须先展示确认表并等待用户明确 YES，不能直接创建。"
+  ],
+  "ResizeUHostInstance": [
+    "前置状态：主机必须处于 Stopped 状态。先调用 DescribeUHostInstance 检查 State，如果是 Running 则需先执行 StopUHostInstance。",
+    "必须先调用 GetUHostUpgradePrice 获取价格差额，展示给用户确认。"
+  ],
+  "ReinstallUHostInstance": [
+    "前置状态：主机必须处于 Stopped 状态。先调用 DescribeUHostInstance 检查 State，如果是 Running 则需先执行 StopUHostInstance。",
+    "必须先调用 DescribeImage 获取镜像列表，选择新的 ImageId。",
+    "Password 需 base64 编码，可用 gen_password.py 生成。"
+  ],
+  "ResetUHostInstancePassword": [
+    "前置状态：主机必须处于 Stopped 状态。先调用 DescribeUHostInstance 检查 State，如果是 Running 则需先执行 StopUHostInstance。",
+    "Password 需 base64 编码。"
+  ],
+  "TerminateUHostInstance": [
+    "⚠ 不可逆操作！必须先向用户确认。",
+    "先调用 DescribeUHostInstance 获取主机详情，展示给用户确认删除目标。"
+  ],
+  "CreateUDBInstance": [
+    "必须先调用 DescribeUDBParamGroup 获取 ParamGroupId（必填参数）。",
+    "必须先调用 DescribeUDBType 获取可用数据库引擎和版本。",
+    "MemoryLimit 必须是特定值：2000/4000/6000/8000/12000/16000/24000/32000/48000/64000/96000/128000 (MB)。",
+    "⚡ 快速创建（用户要求'默认/最便宜'时）：DBTypeId=mysql-8.0, MemoryLimit=2000, DiskSpace=20, InstanceMode=Normal, ChargeType=Dynamic。仅需查询 ParamGroupId（DescribeUDBParamGroup 必填）。"
+  ],
+  "CreateUDBSlave": [
+    "SrcId 必须通过 DescribeUDBInstance 获取主库的 DBId。"
+  ],
+  "CreateUDBReplicationInstance": [
+    "SrcId 必须通过 DescribeUDBInstance 获取 primary 节点的 DBId。"
+  ],
+  "ResizeUDBInstance": [
+    "前置状态：数据库实例会在调整期间短暂不可用，务必提醒用户。",
+    "必须先调用 DescribeUDBInstanceUpgradePrice 获取价格差额。"
+  ],
+  "ResizeUDisk": [
+    "云盘只能扩容，不能缩小。",
+    "必须先调用 DescribeUDiskUpgradePrice 获取价格差额。"
+  ],
+  "DeleteUDisk": [
+    "前置状态：云盘必须处于 Available 状态（未挂载）。如果已挂载，需先执行 DetachUDisk。"
+  ],
+  "CreatePHost": [
+    "ImageId 必须通过 DescribePHostImage 获取，与云主机镜像不通用。"
+  ],
+  "ReleaseEIP": [
+    "前置状态：EIP 必须处于未绑定状态。如果已绑定资源，需先执行 UnBindEIP。"
+  ],
+  "AllocateEIP": [
+    "OperatorName 是必填项：Bgp（最常用）/ International / BGPPro。",
+    "Bandwidth 是必填项，单位 Mbps。",
+    "⚡ 快速创建（用户要求'默认/最便宜'时）：OperatorName=Bgp, Bandwidth=1, PayMode=Bandwidth, ChargeType=Dynamic。"
+  ],
+  "CreateVPC": [
+    "Network 是数组参数，如 [\"10.0.0.0/16\"]。",
+    "VPC 创建后网段不能修改，只能通过 AddVPCNetwork 追加。"
+  ],
+  "CreateULB": [
+    "创建后需通过 CreateVServer 添加监听器，再通过 AllocateBackend 添加后端节点。"
+  ]
+}

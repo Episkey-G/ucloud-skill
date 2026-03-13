@@ -1,0 +1,39 @@
+{
+  "_comment": "产品级SOP提示。route_product.py 匹配到产品后自动注入到输出中。Key 为产品名（与 index.json 一致）。",
+  "UHost": [
+    "脚本入口固定为 scripts/route_product.py、scripts/fetch_api_doc.py、scripts/call_api.py、scripts/gen_password.py。不要编造脚本名，也不要猜 skill 路径。",
+    "常用地域代码参考：cn-bj2（北京二）、cn-sh2（上海二）、hk（香港）。不要把自然语言地域名直接当 API Region 传入。",
+    "创建主机必填 Disks 数组：必须包含 IsBoot=True 的系统盘和 Size、Type 字段。",
+    "镜像ID：必须调用 DescribeImage 获取，不要凭空编造 ImageId。",
+    "登录方式：LoginMode 为 Password 时需提供 base64 编码的密码，可用 gen_password.py 生成。",
+    "用户要求“最便宜/默认/随便开一台”时：不要查价格，不要枚举比价；优先按 fast-create 模板执行，只做一次 DescribeAvailableInstanceTypes 兼容性校验。"
+  ],
+  "UDB": [
+    "创建从库：SrcId 必须通过 DescribeUDBInstance 获取主库的 DBId。",
+    "备份策略：创建时需指定 BackupTime（整点，如 3 表示凌晨3点）。"
+  ],
+  "UNet": [
+    "绑定 EIP：需要先通过 DescribeEIP 或 AllocateEIP 获取 EIPId。",
+    "带宽：Bandwidth 单位为 Mbps，OperatorName 常用值为 Bgp。"
+  ],
+  "UDisk": [
+    "挂载云盘：需要 UHostId（通过 DescribeUHostInstance 获取）和 UDiskId。",
+    "创建云盘：必须指定 DiskType（DataDisk）和 Size（单位GB）。"
+  ],
+  "VPC": [
+    "创建子网：需要 VPCId（通过 DescribeVPC 获取）和 Netmask（子网掩码位数）。"
+  ],
+  "ULB": [
+    "添加后端节点：需要 ULBId 和后端资源的 ResourceId（如 UHostId）。",
+    "创建监听器：需要 ULBId，Protocol 和 ListenPort。"
+  ],
+  "UPHost": [
+    "物理机镜像：必须调用 DescribePHostImage 获取 ImageId，与云主机镜像不通用。"
+  ],
+  "UMem": [
+    "Redis 版本：通过 DescribeURedisVersion 查询可用版本，不要猜测。"
+  ],
+  "UK8S": [
+    "创建集群：需要 VPCId 和 SubnetId，通过 DescribeVPC/DescribeSubnet 获取。"
+  ]
+}

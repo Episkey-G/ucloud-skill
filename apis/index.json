@@ -1,0 +1,4071 @@
+{
+  "Cube": {
+    "aliases": [
+      "容器实例",
+      "cube"
+    ],
+    "apis": [
+      {
+        "Name": "CreateCubeDeployment",
+        "CName": "创建容器实例Deployment"
+      },
+      {
+        "Name": "CreateCubePod",
+        "CName": "创建容器实例"
+      },
+      {
+        "Name": "DeleteCubeDeployment",
+        "CName": "删除容器实例Deployment"
+      },
+      {
+        "Name": "DeleteCubePod",
+        "CName": "删除容器实例"
+      },
+      {
+        "Name": "GetCubeDeployment",
+        "CName": "获取容器实例Deployment详细信息"
+      },
+      {
+        "Name": "GetCubeExecToken",
+        "CName": "获取容器实例执行token"
+      },
+      {
+        "Name": "GetCubeExtendInfo",
+        "CName": "获取容器实例附加信息"
+      },
+      {
+        "Name": "GetCubeMetrics",
+        "CName": "获取容器实例指标"
+      },
+      {
+        "Name": "GetCubeToken",
+        "CName": "获取容器实例Token"
+      },
+      {
+        "Name": "ListCubePod",
+        "CName": "获取容器实例详细列表"
+      },
+      {
+        "Name": "RenewCubePod",
+        "CName": "更新容器实例"
+      }
+    ],
+    "github_path": "cube-api"
+  },
+  "IAM": {
+    "aliases": [
+      "权限",
+      "访问控制",
+      "iam",
+      "策略",
+      "角色"
+    ],
+    "apis": [
+      {
+        "Name": "AddUserToGroup",
+        "CName": "添加成员到用户组"
+      },
+      {
+        "Name": "AttachPoliciesToGroup",
+        "CName": "关联IAM策略到用户组"
+      },
+      {
+        "Name": "AttachPoliciesToUser",
+        "CName": "关联IAM策略到用户"
+      },
+      {
+        "Name": "CreateAccessKey",
+        "CName": "创建用户密钥"
+      },
+      {
+        "Name": "CreateGroup",
+        "CName": "创建用户组"
+      },
+      {
+        "Name": "CreateIAMPolicy",
+        "CName": "创建IAM策略"
+      },
+      {
+        "Name": "CreateProject",
+        "CName": "创建项目"
+      },
+      {
+        "Name": "CreateUser",
+        "CName": "创建IAM用户"
+      },
+      {
+        "Name": "DeleteAccessKey",
+        "CName": "删除用户密钥"
+      },
+      {
+        "Name": "DeleteGroup",
+        "CName": "删除用户组"
+      },
+      {
+        "Name": "DeleteIAMPolicy",
+        "CName": "删除IAM策略"
+      },
+      {
+        "Name": "DeleteProject",
+        "CName": "删除项目"
+      },
+      {
+        "Name": "DeleteUser",
+        "CName": "删除用户"
+      },
+      {
+        "Name": "DetachPoliciesFromGroup",
+        "CName": "移除用户组关联的IAM策略"
+      },
+      {
+        "Name": "DetachPoliciesFromUser",
+        "CName": "移除用户关联的IAM策略"
+      },
+      {
+        "Name": "GetGroup",
+        "CName": "查询用户组详情"
+      },
+      {
+        "Name": "GetIAMPolicy",
+        "CName": "获取策略详情"
+      },
+      {
+        "Name": "GetLoginProfile",
+        "CName": "获取用户登录资料"
+      },
+      {
+        "Name": "GetUser",
+        "CName": "获取用户信息"
+      },
+      {
+        "Name": "GetUserMFAInfo",
+        "CName": "查询用户多因素认证设备信息"
+      },
+      {
+        "Name": "ListAccessKeys",
+        "CName": "获取指定用户密钥列表"
+      },
+      {
+        "Name": "ListEntitiesForPolicy",
+        "CName": "列出引用权限策略的实体"
+      },
+      {
+        "Name": "ListEntitiesForProject",
+        "CName": "列出拥有指定项目权限的实体"
+      },
+      {
+        "Name": "ListGroups",
+        "CName": "列出用户组"
+      },
+      {
+        "Name": "ListPolicies",
+        "CName": "获取IAM策略列表"
+      },
+      {
+        "Name": "ListPoliciesForGroup",
+        "CName": "列出用户组关联的权限策略"
+      },
+      {
+        "Name": "ListPoliciesForUser",
+        "CName": "列出用户关联的IAM策略"
+      },
+      {
+        "Name": "ListProjects",
+        "CName": "列出所有项目"
+      },
+      {
+        "Name": "ListUsers",
+        "CName": "列出用户列表"
+      },
+      {
+        "Name": "ListUsersForGroup",
+        "CName": "列出用户组包含的用户"
+      },
+      {
+        "Name": "ModifyProject",
+        "CName": "修改项目"
+      },
+      {
+        "Name": "RemoveUserFromGroup",
+        "CName": "移除用户组中的IAM用户"
+      },
+      {
+        "Name": "RemoveUserFromProject",
+        "CName": "移除项目中的IAM用户"
+      },
+      {
+        "Name": "UpdateAccessKey",
+        "CName": "修改用户密钥状态"
+      },
+      {
+        "Name": "UpdateGroup",
+        "CName": "更新用户组信息"
+      },
+      {
+        "Name": "UpdateIAMPolicy",
+        "CName": "更新IAM策略"
+      },
+      {
+        "Name": "UpdateIAMPolicyName",
+        "CName": "修改自定义策略名称"
+      },
+      {
+        "Name": "UpdateLoginProfile",
+        "CName": "更新用户登录资料"
+      },
+      {
+        "Name": "UpdateUser",
+        "CName": "更新用户"
+      }
+    ],
+    "github_path": "iam-api"
+  },
+  "IPSecVPN": {
+    "aliases": [
+      "vpn",
+      "ipsec",
+      "vpn网关"
+    ],
+    "apis": [
+      {
+        "Name": "CreateRemoteVPNGateway",
+        "CName": "创建客户VPN网关"
+      },
+      {
+        "Name": "CreateVPNGateway",
+        "CName": "创建VPN网关"
+      },
+      {
+        "Name": "CreateVPNTunnel",
+        "CName": "创建VPN隧道"
+      },
+      {
+        "Name": "DeleteRemoteVPNGateway",
+        "CName": "删除客户VPN网关"
+      },
+      {
+        "Name": "DeleteVPNGateway",
+        "CName": "删除VPN网关"
+      },
+      {
+        "Name": "DeleteVPNTunnel",
+        "CName": "删除VPN隧道"
+      },
+      {
+        "Name": "DescribeRemoteVPNGateway",
+        "CName": "获取客户VPN网关信息"
+      },
+      {
+        "Name": "DescribeVPNGateway",
+        "CName": "获取VPN网关信息"
+      },
+      {
+        "Name": "DescribeVPNTunnel",
+        "CName": "获取VPN隧道信息"
+      },
+      {
+        "Name": "GetVPNGatewayPrice",
+        "CName": "获取VPN价格"
+      },
+      {
+        "Name": "GetVPNGatewayUpgradePrice",
+        "CName": "获取VPN网关规格改动价格"
+      },
+      {
+        "Name": "UpdateVPNGateway",
+        "CName": "更改VPN网关规格"
+      },
+      {
+        "Name": "UpdateVPNTunnelAttribute",
+        "CName": "更新VPN隧道属性"
+      }
+    ],
+    "github_path": "ipsecvpn-api"
+  },
+  "ISMS": {
+    "aliases": [
+      "isms",
+      "视频短信"
+    ],
+    "apis": [
+      {
+        "Name": "CreateISMSSignature",
+        "CName": "申请视频短信签名"
+      },
+      {
+        "Name": "CreateISMSTemplate",
+        "CName": "创建视频短信模板"
+      },
+      {
+        "Name": "DeleteISMSSignature",
+        "CName": "删除视频短信签名"
+      },
+      {
+        "Name": "DeleteISMSTemplate",
+        "CName": "删除视频短信模板"
+      },
+      {
+        "Name": "GetISMSSendReceipt",
+        "CName": "获取视频短信发送状态回执"
+      },
+      {
+        "Name": "QueryISMSSignature",
+        "CName": "查询视频短信签名申请状态"
+      },
+      {
+        "Name": "QueryISMSTemplate",
+        "CName": "查询模板状态信息"
+      },
+      {
+        "Name": "SendISMSMessage",
+        "CName": "发送视频短信"
+      },
+      {
+        "Name": "UpdateISMSSignature",
+        "CName": "修改视频短信签名"
+      }
+    ],
+    "github_path": "isms-api"
+  },
+  "PathX": {
+    "aliases": [
+      "全球加速",
+      "pathx"
+    ],
+    "apis": [
+      {
+        "Name": "BindPathXSSL",
+        "CName": "绑定PathX SSL证书"
+      },
+      {
+        "Name": "CreateGlobalSSHInstance",
+        "CName": "创建GlobalSSH实例"
+      },
+      {
+        "Name": "CreatePathXSSL",
+        "CName": "创建证书"
+      },
+      {
+        "Name": "CreateUGAForwarder",
+        "CName": "创建加速实例转发器"
+      },
+      {
+        "Name": "CreateUGAInstance",
+        "CName": "创建全球加速配置项"
+      },
+      {
+        "Name": "CreateUPath",
+        "CName": "创建UPath"
+      },
+      {
+        "Name": "DeleteGlobalSSHInstance",
+        "CName": "删除GlobalSSH实例"
+      },
+      {
+        "Name": "DeletePathXSSL",
+        "CName": "删除PathX SSL证书"
+      },
+      {
+        "Name": "DeleteUGAForwarder",
+        "CName": "删除加速实例转发器"
+      },
+      {
+        "Name": "DeleteUGAInstance",
+        "CName": "删除全球加速服务加速配置"
+      },
+      {
+        "Name": "DeleteUPath",
+        "CName": "删除UPath"
+      },
+      {
+        "Name": "DescribeGlobalSSHInstance",
+        "CName": "获取GlobalSSH实例列表"
+      },
+      {
+        "Name": "DescribePathXLineConfig",
+        "CName": "获取全球加速线路信息"
+      },
+      {
+        "Name": "DescribePathXSSL",
+        "CName": "获取SSL证书信息"
+      },
+      {
+        "Name": "DescribeUGAInstance",
+        "CName": "获取全球加速服务加速配置信息"
+      },
+      {
+        "Name": "DescribeUPath",
+        "CName": "获取加速线路信息"
+      },
+      {
+        "Name": "DescribeUPathTemplate",
+        "CName": "查询UPath的监控模板"
+      },
+      {
+        "Name": "GetGlobalSSHPrice",
+        "CName": "获取GlobalSSH价格"
+      },
+      {
+        "Name": "GetGlobalSSHTraffic",
+        "CName": "获取GlobalSSH流量统计数据"
+      },
+      {
+        "Name": "GetGlobalSSHUpdatePrice",
+        "CName": "获取GlobalSSH升级价格"
+      },
+      {
+        "Name": "GetPathXMetric",
+        "CName": "获取全球加速监控信息"
+      },
+      {
+        "Name": "ModifyGlobalSSHOriginInfo",
+        "CName": "修改GlobalSSH 源站信息"
+      },
+      {
+        "Name": "ModifyGlobalSSHPort",
+        "CName": "修改GlobalSSH端口"
+      },
+      {
+        "Name": "ModifyGlobalSSHRemark",
+        "CName": "修改GlobalSSH备注"
+      },
+      {
+        "Name": "ModifyGlobalSSHType",
+        "CName": "修改GlobalSSH实例类型"
+      },
+      {
+        "Name": "ModifyUPathBandwidth",
+        "CName": "修改加速线路带宽"
+      },
+      {
+        "Name": "ModifyUPathTemplate",
+        "CName": "修改UPath监控告警项"
+      },
+      {
+        "Name": "UGABindUPath",
+        "CName": "UGA绑定UPath"
+      },
+      {
+        "Name": "UGAUnBindUPath",
+        "CName": "UGA与UPath解绑"
+      },
+      {
+        "Name": "UnBindPathXSSL",
+        "CName": "解绑PathX SSL 证书"
+      },
+      {
+        "Name": "UpdatePathXWhitelist",
+        "CName": "更新入口白名单"
+      }
+    ],
+    "github_path": "pathx-api"
+  },
+  "STS": {
+    "aliases": [
+      "sts",
+      "临时凭证"
+    ],
+    "apis": [
+      {
+        "Name": "AssumeRole",
+        "CName": "获取扮演角色的临时身份凭证"
+      }
+    ],
+    "github_path": "sts-api"
+  },
+  "StepFlow": {
+    "aliases": [
+      "工作流",
+      "stepflow"
+    ],
+    "apis": [
+      {
+        "Name": "CreateSFWorkflowFromTemplate",
+        "CName": "导入工作流定义"
+      },
+      {
+        "Name": "GetSFWorkflowTemplate",
+        "CName": "导出工作流定义"
+      }
+    ],
+    "github_path": "stepflow-api"
+  },
+  "TiDB": {
+    "aliases": [
+      "tidb",
+      "newsql",
+      "分布式数据库"
+    ],
+    "apis": [
+      {
+        "Name": "CreateTiDBService",
+        "CName": "创建服务"
+      },
+      {
+        "Name": "DeleteTiDBService",
+        "CName": "删除服务"
+      },
+      {
+        "Name": "SetTiDBConfig",
+        "CName": "设置TiDB服务实例参数"
+      }
+    ],
+    "github_path": "tidb-api"
+  },
+  "UAAA": {
+    "aliases": [
+      "应用仓库加速",
+      "uaaa"
+    ],
+    "apis": [
+      {
+        "Name": "CreateAppRepo",
+        "CName": "创建应用仓库加速实例"
+      },
+      {
+        "Name": "DeleteAppRepo",
+        "CName": "删除应用仓库加速实例"
+      },
+      {
+        "Name": "DescribeAppRepo",
+        "CName": "查询应用仓库实例信息"
+      },
+      {
+        "Name": "DescribeAppRepoPermitDomain",
+        "CName": "查询允许加速的域名白名单"
+      },
+      {
+        "Name": "DescribeAppRepoPostPaidRecord",
+        "CName": "查询应用仓库实例后付费记录"
+      },
+      {
+        "Name": "GetAppRepoPrice",
+        "CName": "获取应用仓库实例价格"
+      },
+      {
+        "Name": "GetAppRepoUpgradePrice",
+        "CName": "获取改配后的退/补金额"
+      },
+      {
+        "Name": "UpdateAppRepo",
+        "CName": "修改应用仓库实例基本信息"
+      },
+      {
+        "Name": "UpdateAppRepoDomainName",
+        "CName": "更新应用仓库实例绑定的加速域名"
+      }
+    ],
+    "github_path": "uaaa-api"
+  },
+  "UAI_Modelverse": {
+    "aliases": [
+      "ai模型",
+      "modelverse",
+      "模型服务"
+    ],
+    "apis": [
+      {
+        "Name": "CreateUMInferAPIKey",
+        "CName": "创建apikey"
+      },
+      {
+        "Name": "DeleteUMInferAPIKey",
+        "CName": "删除apikey"
+      },
+      {
+        "Name": "GetUMInferAPIModel",
+        "CName": "获取api模型列表"
+      },
+      {
+        "Name": "GetUMInferService",
+        "CName": "获取模型服务"
+      },
+      {
+        "Name": "GetUMInferTokenUsage",
+        "CName": "获取token使用量"
+      },
+      {
+        "Name": "ListUFSquareModel",
+        "CName": "查询模型广场数据"
+      },
+      {
+        "Name": "ListUFSquareModelLen",
+        "CName": "获取模型广场上下文长度列表"
+      },
+      {
+        "Name": "ListUMInferAPIKey",
+        "CName": "列表查询APIKey"
+      },
+      {
+        "Name": "UpdateUMInferAPIKey",
+        "CName": "更新apikey"
+      }
+    ],
+    "github_path": "uai_modelverse-api"
+  },
+  "UAccount": {
+    "aliases": [
+      "账户",
+      "账号",
+      "uaccount"
+    ],
+    "apis": [
+      {
+        "Name": "CreateCharacter",
+        "CName": "创建角色"
+      },
+      {
+        "Name": "DescribeCharacterList",
+        "CName": "获取角色列表"
+      },
+      {
+        "Name": "DescribeMemberList",
+        "CName": "获取成员列表"
+      },
+      {
+        "Name": "GetNetworkMask",
+        "CName": "查询登录与API调用的网络掩码"
+      },
+      {
+        "Name": "GetProjectList",
+        "CName": "获取帐号下的项目列表"
+      },
+      {
+        "Name": "GetRegion",
+        "CName": "获取地域和可用区列表"
+      },
+      {
+        "Name": "InviteSubaccount",
+        "CName": "邀请子帐号成员"
+      },
+      {
+        "Name": "ModifyCharacter",
+        "CName": "修改角色"
+      },
+      {
+        "Name": "RemoveMemberFromProject",
+        "CName": "从项目中移除成员"
+      },
+      {
+        "Name": "SetNetworkMask",
+        "CName": "设置登录与API调用的网络掩码"
+      },
+      {
+        "Name": "TerminateCharacter",
+        "CName": "删除角色"
+      },
+      {
+        "Name": "TerminateMember",
+        "CName": "删除子账号"
+      },
+      {
+        "Name": "TerminateProject",
+        "CName": "删除项目"
+      }
+    ],
+    "github_path": "uaccount-api"
+  },
+  "UBill": {
+    "aliases": [
+      "账单",
+      "计费",
+      "ubill"
+    ],
+    "apis": [
+      {
+        "Name": "CreateRenew",
+        "CName": "创建单个续费订单"
+      },
+      {
+        "Name": "GetBalance",
+        "CName": "获取账户余额"
+      },
+      {
+        "Name": "GetBillDataFileUrl",
+        "CName": "生成账单数据文件下载的 url"
+      },
+      {
+        "Name": "ListUBillDetail",
+        "CName": "获取账单明细"
+      },
+      {
+        "Name": "ListUBillOverview",
+        "CName": "获取账单总览"
+      },
+      {
+        "Name": "ModifyAutoRenewFlag",
+        "CName": "修改资源自动续费标识"
+      }
+    ],
+    "github_path": "ubill-api"
+  },
+  "UCDN": {
+    "aliases": [
+      "cdn",
+      "加速",
+      "ucdn"
+    ],
+    "apis": [
+      {
+        "Name": "AddCertificate",
+        "CName": "添加证书"
+      },
+      {
+        "Name": "BatchDescribeNewUcdnDomain",
+        "CName": "【已废弃】批量获取加速域名配置"
+      },
+      {
+        "Name": "BatchRefreshNewUcdnDomainCache",
+        "CName": "【已废弃】批量刷新缓存"
+      },
+      {
+        "Name": "DeleteCertificate",
+        "CName": "删除证书"
+      },
+      {
+        "Name": "DescribeNewUcdnPrefetchCacheTask",
+        "CName": "获取预取任务状态"
+      },
+      {
+        "Name": "DescribeNewUcdnRefreshCacheTask",
+        "CName": "获取域名刷新任务状态"
+      },
+      {
+        "Name": "GetAuthConfig",
+        "CName": "接口获取鉴权信息(非标使用)"
+      },
+      {
+        "Name": "GetCertificateV2",
+        "CName": "获取证书"
+      },
+      {
+        "Name": "GetNewUcdnDomainBandwidth",
+        "CName": "【待下线】获取域名带宽数据"
+      },
+      {
+        "Name": "GetNewUcdnDomainHitRate",
+        "CName": "获取域名命中率"
+      },
+      {
+        "Name": "GetNewUcdnDomainHttpCode",
+        "CName": "【待下线】获取域名状态码监控"
+      },
+      {
+        "Name": "GetNewUcdnDomainHttpCodeV2",
+        "CName": "【待下线】获取域名详细状态码监控"
+      },
+      {
+        "Name": "GetNewUcdnDomainRequestNum",
+        "CName": "【已废弃】获取域名请求数"
+      },
+      {
+        "Name": "GetNewUcdnLogClientIpStatistics",
+        "CName": "获取日志客户端ip统计"
+      },
+      {
+        "Name": "GetNewUcdnLogRefererStatistics",
+        "CName": "获取热点referer统计"
+      },
+      {
+        "Name": "GetNewUcdnLogUrlStatistics",
+        "CName": "获取日志url统计"
+      },
+      {
+        "Name": "GetUcdnDomain95BandwidthV2",
+        "CName": "获取域名九五峰值带宽数据【新】"
+      },
+      {
+        "Name": "GetUcdnDomainBandwidthByIpProtocol",
+        "CName": "获取域名带宽数据按ip协议【新】"
+      },
+      {
+        "Name": "GetUcdnDomainBandwidthV2",
+        "CName": "获取域名带宽数据【新】"
+      },
+      {
+        "Name": "GetUcdnDomainConfig",
+        "CName": "批量获取加速域名配置"
+      },
+      {
+        "Name": "GetUcdnDomainHitRate",
+        "CName": "获取域名命中率(新）"
+      },
+      {
+        "Name": "GetUcdnDomainHttpCodeV2",
+        "CName": "获取域名状态码信息【新】"
+      },
+      {
+        "Name": "GetUcdnDomainInfoList",
+        "CName": "获取域名基本信息"
+      },
+      {
+        "Name": "GetUcdnDomainLogV2",
+        "CName": "获取域名5分钟日志"
+      },
+      {
+        "Name": "GetUcdnDomainOriginRequestNum",
+        "CName": "获取域名回源请求数【新】"
+      },
+      {
+        "Name": "GetUcdnDomainPrefetchRefreshState",
+        "CName": "获取域名预取刷新配额信息"
+      },
+      {
+        "Name": "GetUcdnDomainRequestNumV2",
+        "CName": "【待下线】获取域名请求数"
+      },
+      {
+        "Name": "GetUcdnDomainRequestNumV3",
+        "CName": "获取域名请求数【新】"
+      },
+      {
+        "Name": "GetUcdnDomainTraffic",
+        "CName": "【待下线】获取加速域名流量使用信息"
+      },
+      {
+        "Name": "GetUcdnPassBandwidth",
+        "CName": "【待下线】获取回源带宽数据（按时间分类）"
+      },
+      {
+        "Name": "GetUcdnPassBandwidthV2",
+        "CName": "获取回源带宽数据（按时间分类）【新】"
+      },
+      {
+        "Name": "GetUcdnProIspBandwidthV2",
+        "CName": "按省份运营商获取域名带宽数据【新】"
+      },
+      {
+        "Name": "GetUcdnProIspRequestNumV2",
+        "CName": "按省份运营商获取域名请求数【新】"
+      },
+      {
+        "Name": "GetUcdnTraffic",
+        "CName": "【待下线】获取流量信息"
+      },
+      {
+        "Name": "GetUcdnTrafficV2",
+        "CName": "获取账户总流量信息【新】"
+      },
+      {
+        "Name": "PrefetchNewUcdnDomainCache",
+        "CName": "提交预取任务"
+      },
+      {
+        "Name": "QueryIpLocation",
+        "CName": "查询IP信息"
+      },
+      {
+        "Name": "RefreshNewUcdnDomainCache",
+        "CName": "刷新缓存"
+      },
+      {
+        "Name": "UpdateUcdnDomainHttpsConfigV2",
+        "CName": "https加速配置"
+      },
+      {
+        "Name": "UpdateUcdnDomainStatus",
+        "CName": "更新加速域名状态"
+      }
+    ],
+    "github_path": "ucdn-api"
+  },
+  "UCompShare": {
+    "aliases": [
+      "轻量算力",
+      "共享计算",
+      "ucompshare"
+    ],
+    "apis": [
+      {
+        "Name": "CreateCompShareCustomImage",
+        "CName": "制作算力平台实例自制镜像"
+      },
+      {
+        "Name": "CreateCompShareInstance",
+        "CName": "创建轻量级算力平台主机资源"
+      },
+      {
+        "Name": "DescribeAvailableCompShareInstanceTypes",
+        "CName": "获取某个地域下可售/售罄的所有机型信息"
+      },
+      {
+        "Name": "DescribeCommunityImages",
+        "CName": "获取社区镜像列表"
+      },
+      {
+        "Name": "DescribeCompShareCustomImages",
+        "CName": "获取自制镜像列表"
+      },
+      {
+        "Name": "DescribeCompShareImages",
+        "CName": "获取算力平台镜像信息"
+      },
+      {
+        "Name": "DescribeCompShareInstance",
+        "CName": "获取用户所有地域的主机资源列表"
+      },
+      {
+        "Name": "DescribeCompShareSupportZone",
+        "CName": "获取支持的可用区信息列表"
+      },
+      {
+        "Name": "DescribeTeamMemberUnpaidOrder",
+        "CName": "获取团队队员未支付订单"
+      },
+      {
+        "Name": "RebootCompShareInstance",
+        "CName": "重启轻量算力平台实例"
+      },
+      {
+        "Name": "ReinstallCompShareInstance",
+        "CName": "重装算力平台实例"
+      },
+      {
+        "Name": "ResetCompShareInstancePassword",
+        "CName": "重置算力平台实例密码"
+      },
+      {
+        "Name": "ResizeCompShareInstance",
+        "CName": "修改算力平台实例配置"
+      },
+      {
+        "Name": "StartCompShareInstance",
+        "CName": "启动算力平台实例"
+      },
+      {
+        "Name": "StopCompShareInstance",
+        "CName": "关闭算力平台实例"
+      },
+      {
+        "Name": "TerminateCompShareCustomImage",
+        "CName": "删除算力平台自制镜像"
+      },
+      {
+        "Name": "TerminateCompShareInstance",
+        "CName": "删除轻量算力共享平台虚机实例"
+      },
+      {
+        "Name": "CheckULHostResourceCapacity",
+        "CName": "检查轻量应用云主机资源余量"
+      },
+      {
+        "Name": "CreateULHostInstance",
+        "CName": "创建轻量应用云主机"
+      },
+      {
+        "Name": "DescribeULHostBundles",
+        "CName": "获取轻量应用云主机套餐列表"
+      },
+      {
+        "Name": "DescribeULHostImage",
+        "CName": "获取轻量应用主机镜像列表"
+      },
+      {
+        "Name": "DescribeULHostInstance",
+        "CName": "获取轻量应用云主机列表"
+      },
+      {
+        "Name": "GetULHostInstancePrice",
+        "CName": "获取轻量应用云主机套餐价格"
+      },
+      {
+        "Name": "GetULHostRenewPrice",
+        "CName": "获取主机续费价格"
+      },
+      {
+        "Name": "ModifyULHostAttribute",
+        "CName": "修改轻量应用主机属性信息"
+      },
+      {
+        "Name": "PoweroffULHostInstance",
+        "CName": "模拟主机掉电"
+      },
+      {
+        "Name": "RebootULHostInstance",
+        "CName": "重启轻量应用云主机"
+      },
+      {
+        "Name": "ReinstallULHostInstance",
+        "CName": "重装轻量应用云主机"
+      },
+      {
+        "Name": "ResetULHostInstancePassword",
+        "CName": "重置轻量应用云主机密码"
+      },
+      {
+        "Name": "StartULHostInstance",
+        "CName": "启动轻量应用主机"
+      },
+      {
+        "Name": "StopULHostInstance",
+        "CName": "关闭轻量应用云主机"
+      },
+      {
+        "Name": "TerminateULHostInstance",
+        "CName": "删除轻量应用云主机"
+      }
+    ],
+    "github_path": "ucompshare-api"
+  },
+  "UDB": {
+    "aliases": [
+      "数据库",
+      "云数据库",
+      "mysql",
+      "udb",
+      "rds"
+    ],
+    "apis": [
+      {
+        "Name": "BackupUDBInstance",
+        "CName": "备份云数据库"
+      },
+      {
+        "Name": "BackupUDBInstanceBinlog",
+        "CName": "备份UDB指定时间段的binlog列表"
+      },
+      {
+        "Name": "BackupUDBInstanceErrorLog",
+        "CName": "备份UDB指定时间段的errorlog"
+      },
+      {
+        "Name": "BackupUDBInstanceSlowLog",
+        "CName": "备份UDB指定时间段的slowlog分析结果"
+      },
+      {
+        "Name": "ChangeUDBParamGroup",
+        "CName": "修改配置文件"
+      },
+      {
+        "Name": "CheckRecoverUDBInstance",
+        "CName": "核查db是否可以使用回档功能"
+      },
+      {
+        "Name": "CheckUDBInstanceToHAAllowance",
+        "CName": "核查db是否可以升级为高可用"
+      },
+      {
+        "Name": "ClearUDBLog",
+        "CName": "清除日志"
+      },
+      {
+        "Name": "CreateMongoDBReplicaSet",
+        "CName": "创建DB副本集"
+      },
+      {
+        "Name": "CreateUDBInstance",
+        "CName": "创建数据库"
+      },
+      {
+        "Name": "CreateUDBInstanceByRecovery",
+        "CName": "将新建的db恢复到指定db某个指定时间点"
+      },
+      {
+        "Name": "CreateUDBParamGroup",
+        "CName": "创建配置文件"
+      },
+      {
+        "Name": "CreateUDBReplicationInstance",
+        "CName": "创建副本"
+      },
+      {
+        "Name": "CreateUDBRouteInstance",
+        "CName": "创建mongos实例"
+      },
+      {
+        "Name": "CreateUDBSlave",
+        "CName": "创建从库"
+      },
+      {
+        "Name": "DeleteUDBInstance",
+        "CName": "删除云数据库"
+      },
+      {
+        "Name": "DeleteUDBParamGroup",
+        "CName": "删除配置"
+      },
+      {
+        "Name": "DescribeUDBBackup",
+        "CName": "获取备份列表"
+      },
+      {
+        "Name": "DescribeUDBBinlogBackup",
+        "CName": "列表UDB实例Binlog自动备份信息"
+      },
+      {
+        "Name": "DescribeUDBBinlogBackupURL",
+        "CName": "(新)获取UDB的日志备份地址"
+      },
+      {
+        "Name": "DescribeUDBInstance",
+        "CName": "获取云数据库信息"
+      },
+      {
+        "Name": "DescribeUDBInstanceBackupURL",
+        "CName": "获取UDB备份下载地址"
+      },
+      {
+        "Name": "DescribeUDBInstanceLog",
+        "CName": "获取UDB错误日志或慢查询日志"
+      },
+      {
+        "Name": "DescribeUDBInstancePrice",
+        "CName": "获取云数据库价格"
+      },
+      {
+        "Name": "DescribeUDBInstanceState",
+        "CName": "获取云数据库状态"
+      },
+      {
+        "Name": "DescribeUDBInstanceUpgradePrice",
+        "CName": "获取UDB实例升降级价格信息"
+      },
+      {
+        "Name": "DescribeUDBLogBackupURL",
+        "CName": "获取UDB的日志备份地址"
+      },
+      {
+        "Name": "DescribeUDBLogPackage",
+        "CName": "列表UDB实例日志备份信息"
+      },
+      {
+        "Name": "DescribeUDBParamGroup",
+        "CName": "获取参数信息"
+      },
+      {
+        "Name": "DescribeUDBSplittingInfo",
+        "CName": "描述读写分离功能"
+      },
+      {
+        "Name": "DescribeUDBType",
+        "CName": "获取云数据库支持类型"
+      },
+      {
+        "Name": "DisableUDBRWSplitting",
+        "CName": "关闭读写分离功能"
+      },
+      {
+        "Name": "EditUDBBackupBlacklist",
+        "CName": "编辑备份黑名单"
+      },
+      {
+        "Name": "EnableUDBRWSplitting",
+        "CName": "启用读写分离功能"
+      },
+      {
+        "Name": "ExtractUDBParamGroup",
+        "CName": "获取配置文件内容"
+      },
+      {
+        "Name": "FetchUDBInstanceEarliestRecoverTime",
+        "CName": "获取最早可回档时间"
+      },
+      {
+        "Name": "GetUDBClientConnNum",
+        "CName": "获取连接实例客户端Ip和连接数"
+      },
+      {
+        "Name": "GetUDBInstanceSSLCertURL",
+        "CName": "获取SSL证书下载地址"
+      },
+      {
+        "Name": "ListUDBMachineType",
+        "CName": "获取UDB云数据库计算规格列表"
+      },
+      {
+        "Name": "ListUDBUserTables",
+        "CName": "查看udb实例的用户表集合"
+      },
+      {
+        "Name": "ModifyUDBInstanceName",
+        "CName": "修改云数据库名称"
+      },
+      {
+        "Name": "ModifyUDBInstancePassword",
+        "CName": "修改DB实例的管理员密码"
+      },
+      {
+        "Name": "ModifyUDBInstanceRemarkName",
+        "CName": "修改云数据库备注"
+      },
+      {
+        "Name": "ModifyUDBInstanceSSL",
+        "CName": "调整SSL的信息"
+      },
+      {
+        "Name": "PromoteUDBInstanceToHA",
+        "CName": "普通db升级为高可用"
+      },
+      {
+        "Name": "PromoteUDBSlave",
+        "CName": "提升从库"
+      },
+      {
+        "Name": "ResizeUDBInstance",
+        "CName": "修改UDB实例的配置"
+      },
+      {
+        "Name": "RestartRWSplitting",
+        "CName": "读写分离中间件重启"
+      },
+      {
+        "Name": "RestartUDBInstance",
+        "CName": "重启云数据库"
+      },
+      {
+        "Name": "RollbackUDBInstance",
+        "CName": "回档指定库表"
+      },
+      {
+        "Name": "SetUDBRWSplitting",
+        "CName": "设置读写分离"
+      },
+      {
+        "Name": "StartUDBInstance",
+        "CName": "启动云数据库"
+      },
+      {
+        "Name": "StopUDBInstance",
+        "CName": "关闭云数据库"
+      },
+      {
+        "Name": "SwitchUDBHAToSentinel",
+        "CName": "UDB高可用实例升级为Sentinel版本（不带HAProxy）升级耗时5-10秒"
+      },
+      {
+        "Name": "SwitchUDBInstanceToHA",
+        "CName": "普通UDB切换为高可用"
+      },
+      {
+        "Name": "UpdateUDBInstanceBackupStrategy",
+        "CName": "修改UDB自动备份策略"
+      },
+      {
+        "Name": "UpdateUDBInstanceSlaveBackupSwitch",
+        "CName": "开启或者关闭UDB从库备份"
+      },
+      {
+        "Name": "UpdateUDBParamGroup",
+        "CName": "更新配置"
+      },
+      {
+        "Name": "UpgradeUDBInstanceToHA",
+        "CName": "快杰普通db升级为高可用"
+      },
+      {
+        "Name": "UpgradeUDBVersion",
+        "CName": "升级db实例版本"
+      },
+      {
+        "Name": "UploadUDBParamGroup",
+        "CName": "导入配置"
+      }
+    ],
+    "github_path": "udb-api"
+  },
+  "UDBProxy": {
+    "aliases": [
+      "读写分离",
+      "数据库代理",
+      "udbproxy"
+    ],
+    "apis": [
+      {
+        "Name": "DescribeUDBProxy",
+        "CName": "获取UDB代理服务详细信息"
+      },
+      {
+        "Name": "ListUDBProxyClient",
+        "CName": "查询代理客户端连接IP信息(实时）"
+      },
+      {
+        "Name": "ListUDBProxyInstanceByDB",
+        "CName": "查询DB启用代理数据"
+      }
+    ],
+    "github_path": "udbproxy-api"
+  },
+  "UDDB": {
+    "aliases": [
+      "分布式数据库",
+      "uddb"
+    ],
+    "apis": [
+      {
+        "Name": "ChangeUDDBInstanceName",
+        "CName": "修改分布式数据库中间件名称"
+      },
+      {
+        "Name": "ChangeUDDBSlaveCount",
+        "CName": "改变分布式数据库数据节点的只读实例个数"
+      },
+      {
+        "Name": "CreateUDDBInstance",
+        "CName": "创建分布式数据库UDDB"
+      },
+      {
+        "Name": "DeleteUDDBInstance",
+        "CName": "删除UDDB实例 "
+      },
+      {
+        "Name": "DescribeUDDBInstance",
+        "CName": "获取分布式数据库UDDB的详细信息"
+      },
+      {
+        "Name": "DescribeUDDBInstancePrice",
+        "CName": "获取分布式数据库UDDB价格"
+      },
+      {
+        "Name": "DescribeUDDBInstanceUpgradePrice",
+        "CName": "升级UDDB时，获取升级后的价格"
+      },
+      {
+        "Name": "RestartUDDBInstance",
+        "CName": "重启UDDB实例"
+      },
+      {
+        "Name": "StartUDDBInstance",
+        "CName": "启动UDDB实例 "
+      },
+      {
+        "Name": "StopUDDBInstance",
+        "CName": "关闭UDDB实例"
+      },
+      {
+        "Name": "UpgradeUDDBDataNode",
+        "CName": "升降级分布式数据库数据节点的配置"
+      },
+      {
+        "Name": "UpgradeUDDBInstance",
+        "CName": "升降级分布式数据库中间件的配置"
+      }
+    ],
+    "github_path": "uddb-api"
+  },
+  "UDI": {
+    "aliases": [
+      "数据智能",
+      "数据集成",
+      "udi"
+    ],
+    "apis": [
+      {
+        "Name": "CreateFunctionTemplate",
+        "CName": "创建功能模板"
+      },
+      {
+        "Name": "CreateMediaTask",
+        "CName": "创建媒体任务"
+      },
+      {
+        "Name": "DeleteFunctionTemplate",
+        "CName": "删除功能模板"
+      },
+      {
+        "Name": "DescribeFunctionTemplate",
+        "CName": "获取功能模板"
+      },
+      {
+        "Name": "DescribeMediaFunctions",
+        "CName": "获取多媒体功能"
+      },
+      {
+        "Name": "DescribeMediaTask",
+        "CName": "描述媒体任务"
+      }
+    ],
+    "github_path": "udi-api"
+  },
+  "UDNS": {
+    "aliases": [
+      "云解析",
+      "域名",
+      "dns",
+      "udns"
+    ],
+    "apis": [
+      {
+        "Name": "AssociateUDNSZoneVPC",
+        "CName": "绑定域名与VPC"
+      },
+      {
+        "Name": "CreateUDNSRecord",
+        "CName": "创建域名记录"
+      },
+      {
+        "Name": "CreateUDNSZone",
+        "CName": "创建域名"
+      },
+      {
+        "Name": "DeleteUDNSRecord",
+        "CName": "删除域名记录"
+      },
+      {
+        "Name": "DescribeUDNSDomain",
+        "CName": "zone下所有域名的rr记录"
+      },
+      {
+        "Name": "DescribeUDNSRecord",
+        "CName": "获取域名记录"
+      },
+      {
+        "Name": "DescribeUDNSZone",
+        "CName": "获取域名信息"
+      },
+      {
+        "Name": "DisassociateUDNSZoneVPC",
+        "CName": "解绑域名和VPC"
+      },
+      {
+        "Name": "ModifyUDNSRecord",
+        "CName": "修改域名记录"
+      },
+      {
+        "Name": "ModifyUDNSZone",
+        "CName": "修改域名属性"
+      }
+    ],
+    "github_path": "udns-api"
+  },
+  "UDPN": {
+    "aliases": [
+      "专线",
+      "udpn"
+    ],
+    "apis": [
+      {
+        "Name": "AllocateUDPN",
+        "CName": "分配 UDPN 专线"
+      },
+      {
+        "Name": "DescribeUDPN",
+        "CName": "描述 UDPN"
+      },
+      {
+        "Name": "GetUDPNLineList",
+        "CName": "获取专线线路列表"
+      },
+      {
+        "Name": "GetUDPNPrice",
+        "CName": "获取 UDPN 价格"
+      },
+      {
+        "Name": "GetUDPNUpgradePrice",
+        "CName": "获取升级价格"
+      },
+      {
+        "Name": "ReleaseUDPN",
+        "CName": "释放 UDPN"
+      }
+    ],
+    "github_path": "udpn-api"
+  },
+  "UDTS": {
+    "aliases": [
+      "数据传输",
+      "udts"
+    ],
+    "apis": [
+      {
+        "Name": "CheckUDTSTask",
+        "CName": "检查任务"
+      },
+      {
+        "Name": "CreateUDTSTask",
+        "CName": "创建UDTS任务"
+      },
+      {
+        "Name": "GetUDTSTaskHistory",
+        "CName": "获取任务历史状态"
+      },
+      {
+        "Name": "GetUDTSTaskStatus",
+        "CName": "查看服务状态"
+      },
+      {
+        "Name": "ListUDTSTask",
+        "CName": "获取 Task 列表信息"
+      },
+      {
+        "Name": "StartUDTSTask",
+        "CName": "启动UDTS服务"
+      },
+      {
+        "Name": "StopUDTSTask",
+        "CName": "停止UDTS任务"
+      }
+    ],
+    "github_path": "udts-api"
+  },
+  "UDisk": {
+    "aliases": [
+      "硬盘",
+      "磁盘",
+      "云盘",
+      "云硬盘",
+      "udisk"
+    ],
+    "apis": [
+      {
+        "Name": "AttachUDisk",
+        "CName": "挂载云硬盘"
+      },
+      {
+        "Name": "CloneUDisk",
+        "CName": "克隆云硬盘"
+      },
+      {
+        "Name": "CloneUDiskSnapshot",
+        "CName": "克隆快照"
+      },
+      {
+        "Name": "CloneUDiskUDataArk",
+        "CName": "从数据方舟的备份创建UDisk"
+      },
+      {
+        "Name": "CreateAttachUDisk",
+        "CName": "创建并挂载云硬盘"
+      },
+      {
+        "Name": "CreateUDisk",
+        "CName": "创建云硬盘"
+      },
+      {
+        "Name": "CreateUDiskSnapshot",
+        "CName": "创建快照"
+      },
+      {
+        "Name": "DeleteUDisk",
+        "CName": "删除云硬盘"
+      },
+      {
+        "Name": "DeleteUDiskSnapshot",
+        "CName": "删除快照"
+      },
+      {
+        "Name": "DescribeRecycleUDisk",
+        "CName": "【已废弃】拉取回收站中云硬盘列表"
+      },
+      {
+        "Name": "DescribeUDisk",
+        "CName": "获取云硬盘列表"
+      },
+      {
+        "Name": "DescribeUDiskPrice",
+        "CName": "获取云硬盘价格"
+      },
+      {
+        "Name": "DescribeUDiskSnapshot",
+        "CName": "获取快照列表"
+      },
+      {
+        "Name": "DescribeUDiskUpgradePrice",
+        "CName": "获取云硬盘升级价格"
+      },
+      {
+        "Name": "DetachDeleteUDisk",
+        "CName": "卸载删除云硬盘"
+      },
+      {
+        "Name": "DetachUDisk",
+        "CName": "卸载云硬盘"
+      },
+      {
+        "Name": "RecoverUDisk",
+        "CName": "【已废弃】恢复云硬盘"
+      },
+      {
+        "Name": "RenameUDisk",
+        "CName": "重命名云硬盘"
+      },
+      {
+        "Name": "ResizeUDisk",
+        "CName": "调整云硬盘"
+      },
+      {
+        "Name": "RestoreUDisk",
+        "CName": "从备份恢复数据至UDisk"
+      },
+      {
+        "Name": "SetUDiskUDataArkMode",
+        "CName": "设置UDisk数据方舟的状态"
+      }
+    ],
+    "github_path": "udisk-api"
+  },
+  "UEC": {
+    "aliases": [
+      "边缘计算",
+      "uec"
+    ],
+    "apis": [
+      {
+        "Name": "BindUEcFirewall",
+        "CName": "绑定防火墙"
+      },
+      {
+        "Name": "CreateUEcCustomImage",
+        "CName": "创建自制镜像"
+      },
+      {
+        "Name": "CreateUEcFirewall",
+        "CName": "创建外网防火墙"
+      },
+      {
+        "Name": "CreateUEcSubnet",
+        "CName": "创建子网"
+      },
+      {
+        "Name": "CreateUEcVHost",
+        "CName": "创建虚拟机"
+      },
+      {
+        "Name": "DeleteUEcCustomImage",
+        "CName": "删除UEC客户自定义镜像"
+      },
+      {
+        "Name": "DeleteUEcSubnet",
+        "CName": "删除子网"
+      },
+      {
+        "Name": "DeleteUEcVHost",
+        "CName": "删除vhost虚拟机"
+      },
+      {
+        "Name": "DescribeUEcFirewall",
+        "CName": "获取防火墙信息"
+      },
+      {
+        "Name": "DescribeUEcFirewallResource",
+        "CName": "防火墙绑定的资源列表"
+      },
+      {
+        "Name": "DescribeUEcIDC",
+        "CName": "获取IDC机房列表"
+      },
+      {
+        "Name": "DescribeUEcSubnet",
+        "CName": "获取子网列表"
+      },
+      {
+        "Name": "DescribeUEcVHost",
+        "CName": "获取虚拟机列表"
+      },
+      {
+        "Name": "DescribeUEcVHostISP",
+        "CName": "获取虚拟机运营商信息"
+      },
+      {
+        "Name": "GetUEcIDCCutInfo",
+        "CName": "获得机房割接信息"
+      },
+      {
+        "Name": "GetUEcIDCVHostData",
+        "CName": "获取机房虚拟机监控数据"
+      },
+      {
+        "Name": "GetUEcImage",
+        "CName": "获取镜像列表"
+      },
+      {
+        "Name": "GetUEcPodPrice",
+        "CName": "获得容器组价格"
+      },
+      {
+        "Name": "GetUEcUpgradePrice",
+        "CName": "获取虚拟机调整差价"
+      },
+      {
+        "Name": "GetUEcVHostData",
+        "CName": "获取虚拟机监控数据"
+      },
+      {
+        "Name": "GetUEcVHostPrice",
+        "CName": "获取虚拟机价格"
+      },
+      {
+        "Name": "ImportUEcCustomImage",
+        "CName": "导入自定义镜像"
+      },
+      {
+        "Name": "ModifyUEcBandwidth",
+        "CName": "修改节点带宽限制"
+      },
+      {
+        "Name": "ModifyUEcImageName",
+        "CName": "修改镜像名称"
+      },
+      {
+        "Name": "PoweroffUEcVHost",
+        "CName": "虚拟机断电"
+      },
+      {
+        "Name": "ReinstallUEcVHost",
+        "CName": "虚拟机重装系统"
+      },
+      {
+        "Name": "StartUEcVHost",
+        "CName": "启动UEC虚拟机"
+      },
+      {
+        "Name": "StopUEcVHost",
+        "CName": "停止UEC虚拟机"
+      },
+      {
+        "Name": "UnBindUEcFirewall",
+        "CName": "解绑防火墙"
+      },
+      {
+        "Name": "UpdateUEcFirewall",
+        "CName": "更新防火墙信息"
+      },
+      {
+        "Name": "UpdateUEcFirewallAttribute",
+        "CName": "更新防火墙属性"
+      },
+      {
+        "Name": "UpdateUEcSubnet",
+        "CName": "更新子网信息"
+      }
+    ],
+    "github_path": "uec-api"
+  },
+  "UFS": {
+    "aliases": [
+      "文件存储",
+      "nas",
+      "ufs"
+    ],
+    "apis": [
+      {
+        "Name": "AddUFSVolumeMountPoint",
+        "CName": "添加文件系统挂载点"
+      },
+      {
+        "Name": "CreateUFSVolume",
+        "CName": "创建文件系统"
+      },
+      {
+        "Name": "DescribeUFSVolume2",
+        "CName": "获取文件系统列表"
+      },
+      {
+        "Name": "DescribeUFSVolumeMountpoint",
+        "CName": "获取文件系统挂载点信息"
+      },
+      {
+        "Name": "DescribeUFSVolumePrice",
+        "CName": "获取文件系统价格"
+      },
+      {
+        "Name": "ExtendUFSVolume",
+        "CName": "文件系统扩容"
+      },
+      {
+        "Name": "RemoveUFSVolume",
+        "CName": "删除文件系统"
+      },
+      {
+        "Name": "RemoveUFSVolumeMountPoint",
+        "CName": "删除文件系统挂载点"
+      },
+      {
+        "Name": "UpdateUFSVolumeInfo",
+        "CName": "更改文件系统相关信息（名称／备注）"
+      }
+    ],
+    "github_path": "ufs-api"
+  },
+  "UFile": {
+    "aliases": [
+      "对象存储",
+      "bucket",
+      "oss",
+      "ufile"
+    ],
+    "apis": [
+      {
+        "Name": "AddCORSRule",
+        "CName": "添加跨域规则"
+      },
+      {
+        "Name": "AddUFileSSLCert",
+        "CName": "添加SSL证书"
+      },
+      {
+        "Name": "BindBucketDomain",
+        "CName": "绑定自定义域名"
+      },
+      {
+        "Name": "CreateBucket",
+        "CName": "创建Bucket"
+      },
+      {
+        "Name": "CreateUFileLifeCycle",
+        "CName": "创建生命周期管理"
+      },
+      {
+        "Name": "CreateUFileToken",
+        "CName": "创建US3令牌"
+      },
+      {
+        "Name": "DeleteBucket",
+        "CName": "删除Bucket"
+      },
+      {
+        "Name": "DeleteCORSRule",
+        "CName": "删除跨域规则"
+      },
+      {
+        "Name": "DeleteUFileLifeCycle",
+        "CName": "删除生命周期管理"
+      },
+      {
+        "Name": "DeleteUFileSSLCert",
+        "CName": "删除SSL证书"
+      },
+      {
+        "Name": "DescribeBucket",
+        "CName": "获取Bucket信息"
+      },
+      {
+        "Name": "DescribeCORSRule",
+        "CName": "获取跨域规则信息"
+      },
+      {
+        "Name": "DescribeUFileLifeCycle",
+        "CName": "获取生命周期信息"
+      },
+      {
+        "Name": "DescribeUFileReferer",
+        "CName": "对象存储防盗链列表"
+      },
+      {
+        "Name": "DescribeUFileSSLCert",
+        "CName": "查询SSL证书"
+      },
+      {
+        "Name": "DescribeUFileToken",
+        "CName": "获取令牌信息"
+      },
+      {
+        "Name": "GetBucketQuota",
+        "CName": "获取bucket配额"
+      },
+      {
+        "Name": "GetBucketStaticPageRule",
+        "CName": "获取bucket静态网页配置"
+      },
+      {
+        "Name": "GetUFileDailyBill",
+        "CName": "获取bucket每日账单"
+      },
+      {
+        "Name": "GetUFileDailyReport",
+        "CName": "查看日消费报表"
+      },
+      {
+        "Name": "GetUFileQuotaInfo",
+        "CName": "获取配额信息"
+      },
+      {
+        "Name": "GetUFileQuotaPrice",
+        "CName": "查询配额支付价格"
+      },
+      {
+        "Name": "SetBucketQuota",
+        "CName": "设置bucket配额"
+      },
+      {
+        "Name": "SetUFileReferer",
+        "CName": "设置对象存储防盗链"
+      },
+      {
+        "Name": "UpdateBucket",
+        "CName": "更改Bucket属性"
+      },
+      {
+        "Name": "UpdateBucketStaticPageRule",
+        "CName": "修改bucket静态网页配置"
+      },
+      {
+        "Name": "UpdateCORSRule",
+        "CName": "更新跨域规则"
+      },
+      {
+        "Name": "UpdateUFileLifeCycle",
+        "CName": "更新生命周期管理"
+      },
+      {
+        "Name": "UpdateUFileSSLCert",
+        "CName": "更新SSL证书"
+      },
+      {
+        "Name": "UpdateUFileToken",
+        "CName": "更新令牌"
+      },
+      {
+        "Name": "UpdateUdsRule",
+        "CName": "更新解压缩规则"
+      }
+    ],
+    "github_path": "ufile-api"
+  },
+  "UGN": {
+    "aliases": [
+      "云联网",
+      "ugn"
+    ],
+    "apis": [
+      {
+        "Name": "AddRoutePolicy",
+        "CName": "新增路由策略"
+      },
+      {
+        "Name": "AttachUGNInstance",
+        "CName": "实例加入云联网"
+      },
+      {
+        "Name": "AttachUGNNetworks",
+        "CName": "批量关联网络实例"
+      },
+      {
+        "Name": "BatchDetachUGNInstance",
+        "CName": "批量移除云联网中实例"
+      },
+      {
+        "Name": "CreateInterRegionBandwidth",
+        "CName": "购买跨域带宽"
+      },
+      {
+        "Name": "CreateSimpleUGNBwPackage",
+        "CName": "云联网简洁版创建带宽包"
+      },
+      {
+        "Name": "DelUGN",
+        "CName": "删除云联网"
+      },
+      {
+        "Name": "DeleteInterRegionBandwidth",
+        "CName": "删除跨域带宽"
+      },
+      {
+        "Name": "DeleteRoutePolicy",
+        "CName": "删除路由策略"
+      },
+      {
+        "Name": "DeleteUGN",
+        "CName": "删除云联网"
+      },
+      {
+        "Name": "DeleteUGNBwPackage",
+        "CName": "删除带宽包"
+      },
+      {
+        "Name": "DescribeInterRegionBandwidth",
+        "CName": "查询跨域带宽"
+      },
+      {
+        "Name": "DescribeSimpleUGN",
+        "CName": "获取简洁版UGN详情"
+      },
+      {
+        "Name": "DescribeUGNInstance",
+        "CName": "查询云联网实例"
+      },
+      {
+        "Name": "DescribeUGNRegionList",
+        "CName": "获取ugn支持的地域"
+      },
+      {
+        "Name": "DescribeUGNRouteRule",
+        "CName": "查询路由规则"
+      },
+      {
+        "Name": "DetachUGNInstance",
+        "CName": "实例退出云联网"
+      },
+      {
+        "Name": "DetachUGNNetworks",
+        "CName": "批量解除关联网络实例"
+      },
+      {
+        "Name": "EnableRoutePolicy",
+        "CName": "启用\\停用路由策略"
+      },
+      {
+        "Name": "GetSimpleBuyBwPrice",
+        "CName": "获取简洁版带宽包价格"
+      },
+      {
+        "Name": "GetSimpleUGNBwPackages",
+        "CName": "获取云联网内的简洁版带宽包"
+      },
+      {
+        "Name": "GetUGNRouteTable",
+        "CName": "获取云联网路由表"
+      },
+      {
+        "Name": "ListSimpleBwPackage",
+        "CName": "获取简洁版带宽包列表"
+      },
+      {
+        "Name": "ListUGN",
+        "CName": "获取云联网资源列表"
+      },
+      {
+        "Name": "ModifyInterRegionBandwidth",
+        "CName": "修改跨域带宽"
+      },
+      {
+        "Name": "ModifyUGNAttribute",
+        "CName": "修改云联网属性"
+      },
+      {
+        "Name": "ModifyUGNBandwidth",
+        "CName": "修改云联网带宽大小"
+      },
+      {
+        "Name": "PublishUGNRouteRule",
+        "CName": "发布云联网路由规则"
+      },
+      {
+        "Name": "SDescribeUGN",
+        "CName": "获取简洁版UGN详情"
+      },
+      {
+        "Name": "UnpublishUGNRouteRule",
+        "CName": "取消发布云联网路由规则"
+      },
+      {
+        "Name": "UpdateRoutePolicy",
+        "CName": "修改路由策略"
+      }
+    ],
+    "github_path": "ugn-api"
+  },
+  "UHost": {
+    "aliases": [
+      "主机",
+      "云主机",
+      "服务器",
+      "云服务器",
+      "虚拟机",
+      "机器",
+      "uhost"
+    ],
+    "apis": [
+      {
+        "Name": "CopyCustomImage",
+        "CName": "复制自制镜像"
+      },
+      {
+        "Name": "CreateCustomImage",
+        "CName": "创建自制镜像"
+      },
+      {
+        "Name": "CreateIsolationGroup",
+        "CName": "创建硬件隔离组"
+      },
+      {
+        "Name": "CreateUHostInstance",
+        "CName": "创建云主机"
+      },
+      {
+        "Name": "CreateUHostKeyPair",
+        "CName": "创建主机密钥对"
+      },
+      {
+        "Name": "DeleteIsolationGroup",
+        "CName": "删除硬件隔离组"
+      },
+      {
+        "Name": "DeleteUHostKeyPairs",
+        "CName": "删除主机密钥"
+      },
+      {
+        "Name": "DescribeAvailableInstanceTypes",
+        "CName": "获取某个地域下可售/售罄的所有机型信息"
+      },
+      {
+        "Name": "DescribeImage",
+        "CName": "获取镜像列表"
+      },
+      {
+        "Name": "DescribeIsolationGroup",
+        "CName": "查询硬件隔离组"
+      },
+      {
+        "Name": "DescribeUHostInstance",
+        "CName": "获取主机信息"
+      },
+      {
+        "Name": "DescribeUHostKeyPairs",
+        "CName": "查询主机密钥信息"
+      },
+      {
+        "Name": "DescribeUHostTags",
+        "CName": "获取主机业务组列表"
+      },
+      {
+        "Name": "GetAttachedDiskUpgradePrice",
+        "CName": "获取挂载磁盘的升级价格"
+      },
+      {
+        "Name": "GetUHostInstancePrice",
+        "CName": "获取主机价格"
+      },
+      {
+        "Name": "GetUHostInstanceVncInfo",
+        "CName": "获取VNC登录信息"
+      },
+      {
+        "Name": "GetUHostRefundPrice",
+        "CName": "获取主机删除扣除费用"
+      },
+      {
+        "Name": "GetUHostRenewPrice",
+        "CName": "获取主机续费价格"
+      },
+      {
+        "Name": "GetUHostUpgradePrice",
+        "CName": "获取主机规格调整差价"
+      },
+      {
+        "Name": "ImportCustomImage",
+        "CName": "导入镜像"
+      },
+      {
+        "Name": "ImportUHostKeyPairs",
+        "CName": "导入密钥对的公钥部分"
+      },
+      {
+        "Name": "LeaveIsolationGroup",
+        "CName": "移除硬件隔离组中的主机"
+      },
+      {
+        "Name": "ModifyUHostIP",
+        "CName": "修改云主机内部 IP 地址"
+      },
+      {
+        "Name": "ModifyUHostInstanceName",
+        "CName": "修改主机名"
+      },
+      {
+        "Name": "ModifyUHostInstanceRemark",
+        "CName": "修改主机备注"
+      },
+      {
+        "Name": "ModifyUHostInstanceTag",
+        "CName": "修改主机业务组"
+      },
+      {
+        "Name": "PoweroffUHostInstance",
+        "CName": "模拟主机掉电"
+      },
+      {
+        "Name": "RebootUHostInstance",
+        "CName": "重启主机"
+      },
+      {
+        "Name": "ReinstallUHostInstance",
+        "CName": "重装系统"
+      },
+      {
+        "Name": "ResetUHostInstancePassword",
+        "CName": "重置主机密码"
+      },
+      {
+        "Name": "ResizeAttachedDisk",
+        "CName": "修改挂载的磁盘大小"
+      },
+      {
+        "Name": "ResizeUHostInstance",
+        "CName": "修改主机规格"
+      },
+      {
+        "Name": "StartUHostInstance",
+        "CName": "启动主机"
+      },
+      {
+        "Name": "StopUHostInstance",
+        "CName": "关闭主机"
+      },
+      {
+        "Name": "TerminateCustomImage",
+        "CName": "删除自制镜像"
+      },
+      {
+        "Name": "TerminateUHostInstance",
+        "CName": "删除云主机"
+      }
+    ],
+    "github_path": "uhost-api"
+  },
+  "UHub": {
+    "aliases": [
+      "容器镜像",
+      "镜像仓库",
+      "uhub"
+    ],
+    "apis": [
+      {
+        "Name": "CreateRepo",
+        "CName": "创建镜像仓库"
+      },
+      {
+        "Name": "DeleteRepo",
+        "CName": "删除镜像仓库"
+      },
+      {
+        "Name": "DeleteRepoImage",
+        "CName": "删除镜像"
+      },
+      {
+        "Name": "GetImageTag",
+        "CName": "获取镜像tag"
+      },
+      {
+        "Name": "GetRepo",
+        "CName": "获取镜像仓库"
+      },
+      {
+        "Name": "GetRepoImage",
+        "CName": "获取镜像仓库下的镜像"
+      },
+      {
+        "Name": "UpdateRepo",
+        "CName": "更新镜像仓库"
+      }
+    ],
+    "github_path": "uhub-api"
+  },
+  "UK8S": {
+    "aliases": [
+      "kubernetes",
+      "k8s",
+      "容器",
+      "容器云",
+      "uk8s"
+    ],
+    "apis": [
+      {
+        "Name": "AddUK8SExistingUHost",
+        "CName": "添加Node节点（已有云主机）"
+      },
+      {
+        "Name": "AddUK8SNodeGroup",
+        "CName": "添加UK8S节点池"
+      },
+      {
+        "Name": "AddUK8SPHostNode",
+        "CName": "添加Node节点（物理云主机）"
+      },
+      {
+        "Name": "AddUK8SUHostNode",
+        "CName": "添加Node节点（云主机）"
+      },
+      {
+        "Name": "CreateUK8SClusterV2",
+        "CName": "创建UK8S集群V2版"
+      },
+      {
+        "Name": "DelUK8SCluster",
+        "CName": "删除UK8S集群"
+      },
+      {
+        "Name": "DelUK8SClusterNodeV2",
+        "CName": "删除Node节点"
+      },
+      {
+        "Name": "DescribeUK8SCluster",
+        "CName": "获取集群信息"
+      },
+      {
+        "Name": "DescribeUK8SImage",
+        "CName": "获取可用镜像"
+      },
+      {
+        "Name": "DescribeUK8SNode",
+        "CName": "获取 UK8S 节点详情"
+      },
+      {
+        "Name": "GetClusterConfig",
+        "CName": "获取集群配置文件"
+      },
+      {
+        "Name": "ListUK8SClusterNodeV2",
+        "CName": "获取UK8S集群节点信息"
+      },
+      {
+        "Name": "ListUK8SClusterV2",
+        "CName": "获取UK8S集群信息"
+      },
+      {
+        "Name": "ListUK8SNodeGroup",
+        "CName": "列出UK8S节点池"
+      },
+      {
+        "Name": "RemoveUK8SNodeGroup",
+        "CName": "删除UK8S节点池"
+      }
+    ],
+    "github_path": "uk8s-api"
+  },
+  "ULB": {
+    "aliases": [
+      "负载均衡",
+      "lb",
+      "ulb",
+      "clb",
+      "alb"
+    ],
+    "apis": [
+      {
+        "Name": "AddSSLBinding",
+        "CName": "新增监听器绑定证书"
+      },
+      {
+        "Name": "AddTargets",
+        "CName": "添加应用型负载均衡的后端服务节点"
+      },
+      {
+        "Name": "AllocateBackend",
+        "CName": "添加传统型负载均衡的后端实例"
+      },
+      {
+        "Name": "BindSSL",
+        "CName": "传统型负载均衡绑定SSL证书"
+      },
+      {
+        "Name": "CreateListener",
+        "CName": "创建应用型负载均衡监听器"
+      },
+      {
+        "Name": "CreateLoadBalancer",
+        "CName": "创建应用型负载均衡实例"
+      },
+      {
+        "Name": "CreatePolicy",
+        "CName": "传统型负载均衡创建内容转发策略"
+      },
+      {
+        "Name": "CreateRule",
+        "CName": "创建应用型负载均衡的转发规则"
+      },
+      {
+        "Name": "CreateSSL",
+        "CName": "创建SSL证书"
+      },
+      {
+        "Name": "CreateSecurityPolicy",
+        "CName": "创建安全策略"
+      },
+      {
+        "Name": "CreateULB",
+        "CName": "创建传统型负载均衡负载均衡"
+      },
+      {
+        "Name": "CreateVServer",
+        "CName": "创建CLB的VServer"
+      },
+      {
+        "Name": "DeleteListener",
+        "CName": "删除应用型负载均衡监听器"
+      },
+      {
+        "Name": "DeleteLoadBalancer",
+        "CName": "删除应用型负载均衡实例"
+      },
+      {
+        "Name": "DeletePolicy",
+        "CName": "删除传统型负载均衡的内容转发策略"
+      },
+      {
+        "Name": "DeleteRule",
+        "CName": "删除应用型负载均衡的转发规则"
+      },
+      {
+        "Name": "DeleteSSLBinding",
+        "CName": "删除监听器绑定的扩展证书"
+      },
+      {
+        "Name": "DeleteSecurityPolicy",
+        "CName": "删除安全策略"
+      },
+      {
+        "Name": "DeleteULB",
+        "CName": "删除传统型负载均衡"
+      },
+      {
+        "Name": "DeleteVServer",
+        "CName": "删除CLB的VServer"
+      },
+      {
+        "Name": "DescribeListeners",
+        "CName": "描述应用型负载均衡监听器"
+      },
+      {
+        "Name": "DescribeLoadBalancers",
+        "CName": "描述应用型负载均衡实例"
+      },
+      {
+        "Name": "DescribeRules",
+        "CName": "描述应用型负载均衡转发规则"
+      },
+      {
+        "Name": "DescribeSSL",
+        "CName": "获取SSL证书信息"
+      },
+      {
+        "Name": "DescribeSSLV2",
+        "CName": "获取SSL证书信息"
+      },
+      {
+        "Name": "DescribeSecurityPolicies",
+        "CName": "获取安全策略的信息"
+      },
+      {
+        "Name": "DescribeSecurityPoliciesV2",
+        "CName": "获取安全策略的信息"
+      },
+      {
+        "Name": "DescribeSupportCiphers",
+        "CName": "描述支持的加密套件"
+      },
+      {
+        "Name": "DescribeULB",
+        "CName": "获取传统型负载均衡信息"
+      },
+      {
+        "Name": "DescribeULBSimple",
+        "CName": "获取传统型负载均衡信息"
+      },
+      {
+        "Name": "DescribeVServer",
+        "CName": "获取CLB下的VServer信息"
+      },
+      {
+        "Name": "ReleaseBackend",
+        "CName": "释放传统型负载均衡的后端实例"
+      },
+      {
+        "Name": "RemoveTargets",
+        "CName": "删除应用型负载均衡的后端服务节点"
+      },
+      {
+        "Name": "UnBindSecurityPolicy",
+        "CName": "解绑安全策略"
+      },
+      {
+        "Name": "UnbindSSL",
+        "CName": "传统型负载均衡解绑SSL证书"
+      },
+      {
+        "Name": "UpdateBackendAttribute",
+        "CName": "更新传统型负载均衡的后端实例属性"
+      },
+      {
+        "Name": "UpdateBackendBatch",
+        "CName": "批量更新后端实例属性"
+      },
+      {
+        "Name": "UpdateListenerAttribute",
+        "CName": "更新应用型负载均衡监听器属性"
+      },
+      {
+        "Name": "UpdateLoadBalancerAttribute",
+        "CName": "更新应用型负载均衡实例属性"
+      },
+      {
+        "Name": "UpdatePolicy",
+        "CName": "更新传统型负载均衡内容转发规则"
+      },
+      {
+        "Name": "UpdateRuleAttribute",
+        "CName": "更新应用型负载均衡的转发规则属性"
+      },
+      {
+        "Name": "UpdateSSLAttribute",
+        "CName": "更新SSL属性"
+      },
+      {
+        "Name": "UpdateSSLBinding",
+        "CName": "更换证书绑定关系"
+      },
+      {
+        "Name": "UpdateSecurityPolicy",
+        "CName": "更新安全策略"
+      },
+      {
+        "Name": "UpdateTargetsAttribute",
+        "CName": "更新应用型负载均衡的后端服务节点属性"
+      },
+      {
+        "Name": "UpdateULBAttribute",
+        "CName": "更新传统型负载均衡属性"
+      },
+      {
+        "Name": "UpdateVServerAttribute",
+        "CName": "更新传统型负载均衡VServer属性"
+      }
+    ],
+    "github_path": "ulb-api"
+  },
+  "UMem": {
+    "aliases": [
+      "缓存",
+      "redis",
+      "memcache",
+      "memcached",
+      "云内存",
+      "umem"
+    ],
+    "apis": [
+      {
+        "Name": "CheckUDredisSpaceAllowance",
+        "CName": "检查高性能UMem剩余资源"
+      },
+      {
+        "Name": "CheckURedisAllowance",
+        "CName": "检查URedis资源是否足够"
+      },
+      {
+        "Name": "CreateScanHotBigKeys",
+        "CName": "创建扫大key和热key的任务"
+      },
+      {
+        "Name": "CreateUMemBackup",
+        "CName": "创建分布式redis备份"
+      },
+      {
+        "Name": "CreateUMemSpace",
+        "CName": "创建内存空间"
+      },
+      {
+        "Name": "CreateUMemcacheGroup",
+        "CName": "创建单机Memcache"
+      },
+      {
+        "Name": "CreateURedisBackup",
+        "CName": "创建主备Redis备份"
+      },
+      {
+        "Name": "CreateURedisGroup",
+        "CName": "创建主备redis"
+      },
+      {
+        "Name": "DescribeUDRedisProxyInfo",
+        "CName": "拉取udredis代理信息"
+      },
+      {
+        "Name": "DescribeUDRedisSlowlog",
+        "CName": "查询UDRedis慢日志"
+      },
+      {
+        "Name": "DescribeUMem",
+        "CName": "获取UMem列表"
+      },
+      {
+        "Name": "DescribeUMemBackup",
+        "CName": "查询分布式redis备份"
+      },
+      {
+        "Name": "DescribeUMemBackupURL",
+        "CName": "获取分布式redis 备份下载链接"
+      },
+      {
+        "Name": "DescribeUMemBlockInfo",
+        "CName": "拉取UDRedis分片信息"
+      },
+      {
+        "Name": "DescribeUMemPrice",
+        "CName": "获取价格"
+      },
+      {
+        "Name": "DescribeUMemSpace",
+        "CName": "查询空间"
+      },
+      {
+        "Name": "DescribeUMemUpgradePrice",
+        "CName": "获取升级价格"
+      },
+      {
+        "Name": "DescribeUMemcachePrice",
+        "CName": "获取umemcache组价格"
+      },
+      {
+        "Name": "DescribeUMemcacheUpgradePrice",
+        "CName": "获取umemcache升级价格"
+      },
+      {
+        "Name": "DescribeURedisBackup",
+        "CName": "查询主备redis备份"
+      },
+      {
+        "Name": "DescribeURedisBackupURL",
+        "CName": "获取主备Redis备份下载链接"
+      },
+      {
+        "Name": "DescribeURedisConfig",
+        "CName": "查询主备Redis所有配置文件"
+      },
+      {
+        "Name": "DescribeURedisGroup",
+        "CName": "查询主备Redis"
+      },
+      {
+        "Name": "DescribeURedisPrice",
+        "CName": "获取URedis价格信息"
+      },
+      {
+        "Name": "DescribeURedisSlowlog",
+        "CName": "查询URedis慢日志"
+      },
+      {
+        "Name": "DescribeURedisUpgradePrice",
+        "CName": "获取uredis升级价格信息"
+      },
+      {
+        "Name": "DescribeURedisVersion",
+        "CName": "获取主Redis可用版本"
+      },
+      {
+        "Name": "FlushallURedisGroup",
+        "CName": "清除主备redis数据"
+      },
+      {
+        "Name": "ISolationURedisGroup",
+        "CName": "打开/关闭URedis"
+      },
+      {
+        "Name": "ModifyURedisConfig",
+        "CName": "修改主备Redis配置文件参数"
+      },
+      {
+        "Name": "ModifyURedisGroupPassword",
+        "CName": "修改主备密码"
+      },
+      {
+        "Name": "RegisterUMemDefrag",
+        "CName": "动态开关redis碎片整理选项"
+      },
+      {
+        "Name": "RemoveUDRedisData",
+        "CName": "清除udredis实例数据"
+      },
+      {
+        "Name": "ResizeUDRedisBlockSize",
+        "CName": "更改udredis分片容量"
+      },
+      {
+        "Name": "ResizeUMemSpace",
+        "CName": "调整容量"
+      },
+      {
+        "Name": "ResizeURedisGroup",
+        "CName": "调整容量"
+      },
+      {
+        "Name": "RestartURedisGroup",
+        "CName": "重启主备实例"
+      },
+      {
+        "Name": "ShutdownURedisGroup",
+        "CName": "ShutdownURedisGroup"
+      },
+      {
+        "Name": "StartURedisGroup",
+        "CName": "StartURedisGroup"
+      },
+      {
+        "Name": "UpdateURedisBackupStrategy",
+        "CName": "更改主备Redis备份策略"
+      },
+      {
+        "Name": "UpdateURedisRewriteTime",
+        "CName": "修改主备redis重写时间"
+      }
+    ],
+    "github_path": "umem-api"
+  },
+  "UMongoDB": {
+    "aliases": [
+      "mongodb",
+      "mongo",
+      "umongodb",
+      "文档数据库"
+    ],
+    "apis": [
+      {
+        "Name": "BackupUMongoDBCluster",
+        "CName": "备份集群数据库"
+      },
+      {
+        "Name": "BackupUMongoDBLog",
+        "CName": "集群日志打包"
+      },
+      {
+        "Name": "CreateUMongoDBConfigTemplate",
+        "CName": "创建配置模板"
+      },
+      {
+        "Name": "CreateUMongoDBReplSet",
+        "CName": "创建副本集"
+      },
+      {
+        "Name": "CreateUMongoDBShardedCluster",
+        "CName": "创建分片集群"
+      },
+      {
+        "Name": "DescribeUMongoDBBackupURL",
+        "CName": "获取实例备份下载链接"
+      },
+      {
+        "Name": "DescribeUMongoDBInstance",
+        "CName": "描述MongoDB实例"
+      },
+      {
+        "Name": "GetUMongoDBBackupParam",
+        "CName": "获取实例备份策略"
+      },
+      {
+        "Name": "GetUMongoDBCfgTempItem",
+        "CName": "获取配置模板内容"
+      },
+      {
+        "Name": "GetUMongoDBLog",
+        "CName": "获取集群节点日志"
+      },
+      {
+        "Name": "GetUMongoDBRecoverTimeRange",
+        "CName": "获取UMongoDB可回档时间范围"
+      },
+      {
+        "Name": "ListUMongoDBBackup",
+        "CName": "实例备份列表"
+      },
+      {
+        "Name": "ListUMongoDBConfigTemplate",
+        "CName": "拉取配置模板"
+      },
+      {
+        "Name": "ListUMongoDBInstances",
+        "CName": "获取副本集/分片集群列表"
+      },
+      {
+        "Name": "ListUMongoDBLogPackage",
+        "CName": "日志打包列表"
+      },
+      {
+        "Name": "ListUMongoDBMachineType",
+        "CName": "获取UmongDB支持机器类型列表"
+      },
+      {
+        "Name": "ListUMongoDBVersion",
+        "CName": "获取UMongoDB支持版本列表"
+      },
+      {
+        "Name": "ModifyUMongoDBAdminPassword",
+        "CName": "修改MongoDB集群root密码"
+      },
+      {
+        "Name": "ModifyUMongoDBAttribute",
+        "CName": "修改umongodb集群名称"
+      },
+      {
+        "Name": "ModifyUMongoDBBackupParam",
+        "CName": "修改实例备份策略"
+      },
+      {
+        "Name": "ResizeUMongoDBInstance",
+        "CName": "集群配置升降级"
+      },
+      {
+        "Name": "RestartUMongoDBCluster",
+        "CName": "重启集群"
+      },
+      {
+        "Name": "StartUMongoDBCluster",
+        "CName": "启动集群"
+      },
+      {
+        "Name": "StopUMongoDBCluster",
+        "CName": "停止集群"
+      }
+    ],
+    "github_path": "umongodb-api"
+  },
+  "UNVS": {
+    "aliases": [
+      "unvs"
+    ],
+    "apis": [
+      {
+        "Name": "CreateUNVSApp",
+        "CName": "创建应用"
+      },
+      {
+        "Name": "GetMobile",
+        "CName": "一键登录"
+      },
+      {
+        "Name": "VerifyMobile",
+        "CName": "号码检测"
+      }
+    ],
+    "github_path": "unvs-api"
+  },
+  "UNet": {
+    "aliases": [
+      "弹性ip",
+      "eip",
+      "公网ip",
+      "外网ip",
+      "弹性公网ip",
+      "带宽",
+      "防火墙",
+      "unet"
+    ],
+    "apis": [
+      {
+        "Name": "AllocateEIP",
+        "CName": "申请弹性IP"
+      },
+      {
+        "Name": "AllocateShareBandwidth",
+        "CName": "开通共享带宽"
+      },
+      {
+        "Name": "AssociateEIPWithShareBandwidth",
+        "CName": "将EIP加入共享带宽"
+      },
+      {
+        "Name": "BindEIP",
+        "CName": "绑定弹性IP"
+      },
+      {
+        "Name": "CreateFirewall",
+        "CName": "创建防火墙"
+      },
+      {
+        "Name": "DescribeBandwidthPackage",
+        "CName": "获取带宽包信息"
+      },
+      {
+        "Name": "DescribeBandwidthUsage",
+        "CName": "获取带宽用量"
+      },
+      {
+        "Name": "DescribeEIP",
+        "CName": "获取弹性IP信息"
+      },
+      {
+        "Name": "DescribeFirewall",
+        "CName": "获取防火墙信息"
+      },
+      {
+        "Name": "DescribeFirewallResource",
+        "CName": "获取防火墙绑定资源"
+      },
+      {
+        "Name": "DescribePrivateIP",
+        "CName": "获取辅助IP信息"
+      },
+      {
+        "Name": "DescribeShareBandwidth",
+        "CName": "获取共享带宽信息"
+      },
+      {
+        "Name": "DescribeShareBandwidthPrice",
+        "CName": "获取共享带宽价格"
+      },
+      {
+        "Name": "DescribeShareBandwidthUpdatePrice",
+        "CName": "获取共享带宽升级价格"
+      },
+      {
+        "Name": "DisassociateEIPWithShareBandwidth",
+        "CName": "将EIP移出共享带宽"
+      },
+      {
+        "Name": "DisassociateFirewall",
+        "CName": "解绑防火墙"
+      },
+      {
+        "Name": "GetEIPExclusiveUTPInfo",
+        "CName": "获取EIP专属流量包信息"
+      },
+      {
+        "Name": "GetEIPPrice",
+        "CName": "获取弹性IP价格"
+      },
+      {
+        "Name": "GetEIPUpgradePrice",
+        "CName": "获取弹性IP带宽改动价格"
+      },
+      {
+        "Name": "GetThroughputDailyBillingInfo",
+        "CName": "获取流量计费EIP每日流量计费信息"
+      },
+      {
+        "Name": "GrantFirewall",
+        "CName": "应用防火墙"
+      },
+      {
+        "Name": "ModifyEIPBandwidth",
+        "CName": "调整弹性IP带宽"
+      },
+      {
+        "Name": "ModifyEIPWeight",
+        "CName": "修改弹性IP出口权重"
+      },
+      {
+        "Name": "ReleaseEIP",
+        "CName": "释放弹性IP"
+      },
+      {
+        "Name": "ReleaseShareBandwidth",
+        "CName": "关闭共享带宽"
+      },
+      {
+        "Name": "ResizeShareBandwidth",
+        "CName": "调整共享带宽"
+      },
+      {
+        "Name": "SetEIPPayMode",
+        "CName": "设置弹性IP计费方式"
+      },
+      {
+        "Name": "UnBindEIP",
+        "CName": "解绑弹性IP"
+      },
+      {
+        "Name": "UpdateEIPAttribute",
+        "CName": "更新弹性IP属性"
+      },
+      {
+        "Name": "UpdateFirewall",
+        "CName": "更新防火墙规则"
+      }
+    ],
+    "github_path": "unet-api"
+  },
+  "UPFS": {
+    "aliases": [
+      "并行文件存储",
+      "upfs"
+    ],
+    "apis": [
+      {
+        "Name": "CreateUPFSVolume",
+        "CName": "创建UPFS文件系统"
+      },
+      {
+        "Name": "DescribeUPFSVolume",
+        "CName": "获取UPFS文件系统列表"
+      },
+      {
+        "Name": "DescribeUPFSVolumePrice",
+        "CName": "获取UPFS文件系统价格"
+      },
+      {
+        "Name": "DescribeUPFSVolumeUpgradePrice",
+        "CName": "UPFS文件系统扩容价格"
+      },
+      {
+        "Name": "ExtendUPFSVolume",
+        "CName": "UPFS文件系统扩容"
+      },
+      {
+        "Name": "RemoveUPFSVolume",
+        "CName": "删除UPFS文件系统"
+      },
+      {
+        "Name": "UpdateUPFSVolumeInfo",
+        "CName": "更改UPFS文件系统相关信息（名称／备注）"
+      }
+    ],
+    "github_path": "upfs-api"
+  },
+  "UPHost": {
+    "aliases": [
+      "物理机",
+      "裸金属",
+      "裸金属云主机",
+      "uphost"
+    ],
+    "apis": [
+      {
+        "Name": "CreatePHost",
+        "CName": "创建物理机"
+      },
+      {
+        "Name": "CreatePHostImage",
+        "CName": "创建裸金属2.0用户自定义镜像"
+      },
+      {
+        "Name": "DescribeBaremetalMachineType",
+        "CName": "获取裸金属机型的详细信息"
+      },
+      {
+        "Name": "DescribePHost",
+        "CName": "获取物理机信息"
+      },
+      {
+        "Name": "DescribePHostImage",
+        "CName": "获取物理机镜像"
+      },
+      {
+        "Name": "DescribePHostMachineType",
+        "CName": "获取物理云机型信息"
+      },
+      {
+        "Name": "DescribePHostTags",
+        "CName": "获取物理机业务组"
+      },
+      {
+        "Name": "GetPHostDiskUpgradePrice",
+        "CName": "获取物理云裸金属挂载云盘的升级价格"
+      },
+      {
+        "Name": "GetPHostPrice",
+        "CName": "获取物理机价格"
+      },
+      {
+        "Name": "GetPhostDiskUpgradePrice",
+        "CName": "获取物理云裸金属挂载云盘的升级价格"
+      },
+      {
+        "Name": "ModifyPHostImageInfo",
+        "CName": "修改物理云自定义镜像信息"
+      },
+      {
+        "Name": "ModifyPHostInfo",
+        "CName": "更改物理机信息"
+      },
+      {
+        "Name": "PoweroffPHost",
+        "CName": "断电物理机"
+      },
+      {
+        "Name": "RebootPHost",
+        "CName": "重启物理机"
+      },
+      {
+        "Name": "ReinstallPHost",
+        "CName": "重装物理机"
+      },
+      {
+        "Name": "ResetPHostPassword",
+        "CName": "重置实例密码"
+      },
+      {
+        "Name": "ResizePHostAttachedDisk",
+        "CName": "修改挂载的磁盘大小"
+      },
+      {
+        "Name": "StartPHost",
+        "CName": "启动物理机"
+      },
+      {
+        "Name": "StopPHost",
+        "CName": "关闭物理机"
+      },
+      {
+        "Name": "TerminatePHost",
+        "CName": "删除物理机"
+      },
+      {
+        "Name": "TerminatePHostImage",
+        "CName": "删除裸金属2.0用户自定义镜像"
+      }
+    ],
+    "github_path": "uphost-api"
+  },
+  "UPgSQL": {
+    "aliases": [
+      "postgresql",
+      "pg",
+      "postgres",
+      "upgsql"
+    ],
+    "apis": [
+      {
+        "Name": "BackupUPgSQLLog",
+        "CName": "备份日志包"
+      },
+      {
+        "Name": "CreateUPgSQLInstance",
+        "CName": "创建PG云数据库"
+      },
+      {
+        "Name": "CreateUPgSQLParamTemplate",
+        "CName": "创建PG参数模板"
+      },
+      {
+        "Name": "CreateUPgSQLReadonly",
+        "CName": "创建PG从库"
+      },
+      {
+        "Name": "DeleteUPgSQLInstance",
+        "CName": "删除PG实例"
+      },
+      {
+        "Name": "DeleteUPgSQLParamTemplate",
+        "CName": "删除参数模板"
+      },
+      {
+        "Name": "DownloadUPgSQLParamTemplate",
+        "CName": "下载参数模板信息"
+      },
+      {
+        "Name": "GetUPgSQLBackupStrategy",
+        "CName": "获取备份策略"
+      },
+      {
+        "Name": "GetUPgSQLBackupURL",
+        "CName": "获取备份下载地址"
+      },
+      {
+        "Name": "GetUPgSQLInstance",
+        "CName": "获取云数据库实例描述"
+      },
+      {
+        "Name": "GetUPgSQLInstanceLog",
+        "CName": "查询日志"
+      },
+      {
+        "Name": "GetUPgSQLInstancePrice",
+        "CName": "获取创建PG云数据库价格"
+      },
+      {
+        "Name": "GetUPgSQLParamTemplate",
+        "CName": "获取模板信息"
+      },
+      {
+        "Name": "GetUPgSQLUpgradePrice",
+        "CName": " 获取 PG 云数据库升降级价格"
+      },
+      {
+        "Name": "ListUPgSQLBackup",
+        "CName": "获取备份列表"
+      },
+      {
+        "Name": "ListUPgSQLInstance",
+        "CName": "获取云数据库列表"
+      },
+      {
+        "Name": "ListUPgSQLLog",
+        "CName": "获取数据库日志"
+      },
+      {
+        "Name": "ListUPgSQLMachineType",
+        "CName": "获取UPgSQL支持机器类型列表"
+      },
+      {
+        "Name": "ListUPgSQLParamTemplate",
+        "CName": "获取可用参数模板列表"
+      },
+      {
+        "Name": "ListUPgSQLVersion",
+        "CName": "获取UPgSQL支持版本列表"
+      },
+      {
+        "Name": "RestartUPgSQLInstance",
+        "CName": "重启PG实例"
+      },
+      {
+        "Name": "StartUPgSQLInstance",
+        "CName": "启动PG实例"
+      },
+      {
+        "Name": "StopUPgSQLCreatingReadonly",
+        "CName": "停止正在创建的从库"
+      },
+      {
+        "Name": "StopUPgSQLInstance",
+        "CName": "关闭PG实例"
+      },
+      {
+        "Name": "UpdateUPgSQLAttribute",
+        "CName": "更新数据库属性"
+      },
+      {
+        "Name": "UpdateUPgSQLBackupStrategy",
+        "CName": "修改备份策略"
+      },
+      {
+        "Name": "UpdateUPgSQLPassword",
+        "CName": "更新数据库用户密码"
+      },
+      {
+        "Name": "UpgradeUPgSQLInstance",
+        "CName": "硬件规格升降级"
+      },
+      {
+        "Name": "UploadUPgSQLParamTemplate",
+        "CName": "上传参数模板"
+      }
+    ],
+    "github_path": "upgsql-api"
+  },
+  "UPhone": {
+    "aliases": [
+      "云手机",
+      "uphone"
+    ],
+    "apis": [
+      {
+        "Name": "CreateUPhone",
+        "CName": "创建云手机"
+      },
+      {
+        "Name": "CreateUPhoneApp",
+        "CName": "创建云手机应用"
+      },
+      {
+        "Name": "CreateUPhoneAppVersion",
+        "CName": "创建云手机应用版本"
+      },
+      {
+        "Name": "CreateUPhoneImage",
+        "CName": "创建云手机镜像"
+      },
+      {
+        "Name": "CreateUPhoneServer",
+        "CName": "创建云手机服务器"
+      },
+      {
+        "Name": "DeleteUPhone",
+        "CName": "删除云手机"
+      },
+      {
+        "Name": "DeleteUPhoneImage",
+        "CName": "删除自制云手机镜像。"
+      },
+      {
+        "Name": "DeleteUPhoneServer",
+        "CName": "删除云手机服务器"
+      },
+      {
+        "Name": "DeleteUPhoneShareBandwidth",
+        "CName": "删除云手机共享带宽"
+      },
+      {
+        "Name": "DescribeUPhone",
+        "CName": "获取云手机列表"
+      },
+      {
+        "Name": "DescribeUPhoneApp",
+        "CName": "获取应用列表"
+      },
+      {
+        "Name": "DescribeUPhoneAppVersion",
+        "CName": "获取应用版本列表"
+      },
+      {
+        "Name": "DescribeUPhoneCities",
+        "CName": "获取云手机城市列表"
+      },
+      {
+        "Name": "DescribeUPhoneDetailByApp",
+        "CName": "查询应用所安装的云手机列表"
+      },
+      {
+        "Name": "DescribeUPhoneEipList",
+        "CName": "获取云手机Eip列表"
+      },
+      {
+        "Name": "DescribeUPhoneImage",
+        "CName": "获取云手机镜像信息列表"
+      },
+      {
+        "Name": "DescribeUPhoneIpRegions",
+        "CName": "获取云手机所在城市支持绑定独立IP的地域列表"
+      },
+      {
+        "Name": "DescribeUPhoneJob",
+        "CName": "查询Job的执行状态。"
+      },
+      {
+        "Name": "DescribeUPhoneModel",
+        "CName": "获取云手机规格列表"
+      },
+      {
+        "Name": "DescribeUPhoneServer",
+        "CName": "获取云手机服务器列表"
+      },
+      {
+        "Name": "DescribeUPhoneServerModel",
+        "CName": "获取ServerModel列表。"
+      },
+      {
+        "Name": "DescribeUPhoneShareBandwidth",
+        "CName": "获取共享带宽列表"
+      },
+      {
+        "Name": "GetUPhoneAllowance",
+        "CName": "获取云手机创建余量"
+      },
+      {
+        "Name": "GetUPhoneBandwidthUpgradePrice",
+        "CName": "获取云手机带宽升降级价格"
+      },
+      {
+        "Name": "GetUPhonePrice",
+        "CName": "获取云手机价格"
+      },
+      {
+        "Name": "GetUPhoneRenewPrice",
+        "CName": "获取云手机续费价格"
+      },
+      {
+        "Name": "GetUPhoneScreenCapture",
+        "CName": "云手机截屏"
+      },
+      {
+        "Name": "GetUPhoneServerPrice",
+        "CName": "获取云手机服务器价格"
+      },
+      {
+        "Name": "GetUPhoneServerRenewPrice",
+        "CName": "获取云手机服务器续费价格"
+      },
+      {
+        "Name": "GetUPhoneShareBandwidthUpgradePrice",
+        "CName": "获取云手机共享带宽升降级价格"
+      },
+      {
+        "Name": "ImportFile",
+        "CName": "上传文件"
+      },
+      {
+        "Name": "InstallUPhoneAppVersion",
+        "CName": "安装云手机应用版本"
+      },
+      {
+        "Name": "ModifyUPhoneBandwidth",
+        "CName": "修改云手机带宽"
+      },
+      {
+        "Name": "ModifyUPhoneName",
+        "CName": "修改云手机名称"
+      },
+      {
+        "Name": "ModifyUPhoneRemark",
+        "CName": "修改云手机备注信息"
+      },
+      {
+        "Name": "ModifyUPhoneServerName",
+        "CName": "修改云手机服务器名称"
+      },
+      {
+        "Name": "ModifyUPhoneServerRemark",
+        "CName": "修改云手机服务器备注信息"
+      },
+      {
+        "Name": "ModifyUPhoneShareBandwidth",
+        "CName": "修改云手机共享带宽"
+      },
+      {
+        "Name": "ModifyUPhoneShareBandwidthName",
+        "CName": "修改云手机共享带宽名称"
+      },
+      {
+        "Name": "ModifyUPhoneShareBandwidthRemark",
+        "CName": "修改云手机共享带宽备注"
+      },
+      {
+        "Name": "PoweroffUPhone",
+        "CName": "关闭云手机"
+      },
+      {
+        "Name": "PoweronUPhone",
+        "CName": "开启云手机"
+      },
+      {
+        "Name": "RebootUPhone",
+        "CName": "重启云手机"
+      },
+      {
+        "Name": "RenewUPhone",
+        "CName": "一键新机"
+      },
+      {
+        "Name": "ResetUPhone",
+        "CName": "重置云手机"
+      },
+      {
+        "Name": "RunAsyncCommand",
+        "CName": "执行异步shell命令"
+      },
+      {
+        "Name": "RunSyncCommand",
+        "CName": "执行同步shell命令"
+      },
+      {
+        "Name": "SetUPhoneCallback",
+        "CName": "设置云手机异步操作回调"
+      },
+      {
+        "Name": "SetUPhoneConfig",
+        "CName": "设置云手机参数"
+      },
+      {
+        "Name": "SetUPhoneGPS",
+        "CName": "设置云手机GPS信息"
+      },
+      {
+        "Name": "SetUPhoneManagerMode",
+        "CName": "设置云手机管理模式"
+      },
+      {
+        "Name": "SetUPhoneRootMode",
+        "CName": "设置云手机Root模式"
+      },
+      {
+        "Name": "SetUPhoneToken",
+        "CName": "设置云手机RTC连接Token"
+      },
+      {
+        "Name": "SwitchUPhoneIndependentIp",
+        "CName": "更换云手机独立IP"
+      },
+      {
+        "Name": "UnInstallUPhoneAppVersion",
+        "CName": "卸载云手机应用版本"
+      },
+      {
+        "Name": "UpdateUPhoneImage",
+        "CName": "更新云手机镜像信息。"
+      }
+    ],
+    "github_path": "uphone-api"
+  },
+  "USLK": {
+    "aliases": [
+      "短链接",
+      "uslk"
+    ],
+    "apis": [
+      {
+        "Name": "BatchCreateUSLKShortLink",
+        "CName": "批量创建短链接【免审】"
+      },
+      {
+        "Name": "CreateUSLKLongLink",
+        "CName": "报备长链接"
+      },
+      {
+        "Name": "CreateUSLKScenario",
+        "CName": "创建场景"
+      },
+      {
+        "Name": "CreateUSLKShortLink",
+        "CName": "创建短链接"
+      },
+      {
+        "Name": "DescribeUSLKRedirectRecords",
+        "CName": "查询短链接访问明细列表"
+      },
+      {
+        "Name": "DescribeUSLKShortLinkList",
+        "CName": "查询短链接列表"
+      }
+    ],
+    "github_path": "uslk-api"
+  },
+  "USMS": {
+    "aliases": [
+      "短信",
+      "usms"
+    ],
+    "apis": [
+      {
+        "Name": "AddBackfill",
+        "CName": "添加回填"
+      },
+      {
+        "Name": "AddUSMSSignatureQualification",
+        "CName": "添加短信签名资质申请记录"
+      },
+      {
+        "Name": "BatchCreateUSMSBlacklistPhone",
+        "CName": "批量创建手机号黑名单"
+      },
+      {
+        "Name": "CreateUSMSSignature",
+        "CName": "申请短信签名"
+      },
+      {
+        "Name": "CreateUSMSTemplate",
+        "CName": "申请短信模板"
+      },
+      {
+        "Name": "DeleteUSMSSignature",
+        "CName": "删除短信签名"
+      },
+      {
+        "Name": "DeleteUSMSSignatureQualification",
+        "CName": "删除短信签名资质申请记录"
+      },
+      {
+        "Name": "DeleteUSMSTemplate",
+        "CName": "删除短信模板"
+      },
+      {
+        "Name": "GetUSMSSendReceipt",
+        "CName": "获取短信发送状态"
+      },
+      {
+        "Name": "GetUSMSSendStatistics",
+        "CName": "获取发送统计数据"
+      },
+      {
+        "Name": "GetUSMSSignatureQualification",
+        "CName": "获取短信签名资质申请记录列表"
+      },
+      {
+        "Name": "GetUSMSTemplateSendStatistics",
+        "CName": "获取模板发送统计数据"
+      },
+      {
+        "Name": "QueryUSMSSignature",
+        "CName": "查询短信签名申请状态"
+      },
+      {
+        "Name": "QueryUSMSSignatureQualification",
+        "CName": "获取短信签名资质申请记录详情"
+      },
+      {
+        "Name": "QueryUSMSTemplate",
+        "CName": "查询短信模板申请状态"
+      },
+      {
+        "Name": "SendBatchUSMSMessage",
+        "CName": "批量发送短信"
+      },
+      {
+        "Name": "SendUSMSMessage",
+        "CName": "发送短信"
+      },
+      {
+        "Name": "UpdateUSMSSignature",
+        "CName": "修改短信签名"
+      },
+      {
+        "Name": "UpdateUSMSSignatureQualification",
+        "CName": "修改短信签名资质申请记录"
+      },
+      {
+        "Name": "UpdateUSMSTemplate",
+        "CName": "修改短信模板"
+      },
+      {
+        "Name": "UploadUSMSFile",
+        "CName": "上传文件"
+      }
+    ],
+    "github_path": "usms-api"
+  },
+  "UTSDB": {
+    "aliases": [
+      "时序数据库",
+      "utsdb"
+    ],
+    "apis": [
+      {
+        "Name": "CheckUInfluxdbAllowance",
+        "CName": "检查UInfluxdb剩余资源"
+      },
+      {
+        "Name": "CreateUInfluxdbDatabase",
+        "CName": "创建Influxdb数据库"
+      },
+      {
+        "Name": "CreateUInfluxdbDatabaseRP",
+        "CName": "创建保留策略"
+      },
+      {
+        "Name": "CreateUInfluxdbInstance",
+        "CName": "创建UInfluxdb实例"
+      },
+      {
+        "Name": "DeleteUInfluxdbDatabase",
+        "CName": "删除Influxdb实例的数据库"
+      },
+      {
+        "Name": "DeleteUInfluxdbDatabaseRP",
+        "CName": "删除数据保留策略"
+      },
+      {
+        "Name": "DeleteUInfluxdbInstance",
+        "CName": "删除UInfluxdb实例"
+      },
+      {
+        "Name": "DescribeUInfluxdbDatabase",
+        "CName": "描述UInfluxdb数据库"
+      },
+      {
+        "Name": "DescribeUInfluxdbDatabaseRP",
+        "CName": "拉取数据库下的保留策略"
+      },
+      {
+        "Name": "DescribeUInfluxdbInstance",
+        "CName": "拉取UInfluxdb实例列表"
+      },
+      {
+        "Name": "DescribeUInfluxdbPrice",
+        "CName": "获取UInfluxdb价格"
+      },
+      {
+        "Name": "DescribeUInfluxdbUpgradePrice",
+        "CName": "获取UIfluxdb升降级价格"
+      },
+      {
+        "Name": "ModifyUInfluxdbDatabasePolicy",
+        "CName": "更改UInfluxdb实例数据库数据保留策略"
+      },
+      {
+        "Name": "RebootUInfluxdbInstance",
+        "CName": "重启UInfluxdb实例"
+      },
+      {
+        "Name": "ResetUInfluxdbInstanceName",
+        "CName": "更改UIfluxdb实例名称"
+      },
+      {
+        "Name": "StartUInfluxdbInstance",
+        "CName": "启动UInfluxdb实例"
+      },
+      {
+        "Name": "StopUInfluxdbInstance",
+        "CName": "关闭UInfluxdb实例"
+      },
+      {
+        "Name": "UpgradeUInfluxdbInstance",
+        "CName": "UInfluxdb实例配置升降级"
+      }
+    ],
+    "github_path": "utsdb-api"
+  },
+  "UVMS": {
+    "aliases": [
+      "语音",
+      "语音消息",
+      "uvms"
+    ],
+    "apis": [
+      {
+        "Name": "GetUVMSSendRecord",
+        "CName": "获取语音发送记录"
+      },
+      {
+        "Name": "SendUVMSMessage",
+        "CName": "发送语音消息"
+      }
+    ],
+    "github_path": "uvms-api"
+  },
+  "VPC": {
+    "aliases": [
+      "vpc",
+      "私有网络",
+      "子网",
+      "网络acl",
+      "路由表"
+    ],
+    "apis": [
+      {
+        "Name": "AddSnatRule",
+        "CName": "添加出口规则（SNAT规则）"
+      },
+      {
+        "Name": "AddSubnetIPv6",
+        "CName": "子网关联IPv6"
+      },
+      {
+        "Name": "AddVPCIPv6",
+        "CName": "VPC关联IPv6网段"
+      },
+      {
+        "Name": "AddVPCNetwork",
+        "CName": "添加VPC网段"
+      },
+      {
+        "Name": "AddWhiteListResource",
+        "CName": "添加NAT网关白名单"
+      },
+      {
+        "Name": "AllocateBatchSecondaryIp",
+        "CName": "批量申请虚拟网卡辅助IP"
+      },
+      {
+        "Name": "AllocateSecondaryIp",
+        "CName": "分配ip"
+      },
+      {
+        "Name": "AllocateVIP",
+        "CName": "申请内网虚拟IP"
+      },
+      {
+        "Name": "AssignIPv6",
+        "CName": "申请IPv6地址"
+      },
+      {
+        "Name": "AssociateRouteTable",
+        "CName": "绑定子网的路由表"
+      },
+      {
+        "Name": "AssociateSecGroup",
+        "CName": "绑定资源到安全组"
+      },
+      {
+        "Name": "AssociateSecGroupDynamic",
+        "CName": "动态绑定安全组"
+      },
+      {
+        "Name": "AttachNetworkInterface",
+        "CName": "绑定网卡到云主机"
+      },
+      {
+        "Name": "CloneRouteTable",
+        "CName": "克隆路由表"
+      },
+      {
+        "Name": "CreateNATGW",
+        "CName": "创建NAT网关"
+      },
+      {
+        "Name": "CreateNATGWPolicy",
+        "CName": "添加NAT网关端口转发规则"
+      },
+      {
+        "Name": "CreateNetworkAcl",
+        "CName": "创建网络ACL"
+      },
+      {
+        "Name": "CreateNetworkAclAssociation",
+        "CName": "创建ACL的绑定关系"
+      },
+      {
+        "Name": "CreateNetworkAclEntry",
+        "CName": "创建ACL的规则"
+      },
+      {
+        "Name": "CreateNetworkInterface",
+        "CName": "创建虚拟网卡"
+      },
+      {
+        "Name": "CreateRouteTable",
+        "CName": "创建路由表"
+      },
+      {
+        "Name": "CreateSecGroup",
+        "CName": "创建安全组"
+      },
+      {
+        "Name": "CreateSecGroupRule",
+        "CName": "创建安全组规则"
+      },
+      {
+        "Name": "CreateSnatDnatRule",
+        "CName": "使用NAT创建内外网IP映射"
+      },
+      {
+        "Name": "CreateSubnet",
+        "CName": "创建子网"
+      },
+      {
+        "Name": "CreateVPC",
+        "CName": "创建VPC"
+      },
+      {
+        "Name": "CreateVPCIntercom",
+        "CName": "新建VPC互通"
+      },
+      {
+        "Name": "DeleteNATGW",
+        "CName": "删除NAT网关"
+      },
+      {
+        "Name": "DeleteNATGWPolicy",
+        "CName": "删除NAT网关端口转发规则"
+      },
+      {
+        "Name": "DeleteNetworkAcl",
+        "CName": "删除网络ACL"
+      },
+      {
+        "Name": "DeleteNetworkAclAssociation",
+        "CName": "删除网络ACL绑定关系"
+      },
+      {
+        "Name": "DeleteNetworkAclEntry",
+        "CName": "删除ACL的规则"
+      },
+      {
+        "Name": "DeleteNetworkInterface",
+        "CName": "删除网卡"
+      },
+      {
+        "Name": "DeleteRouteTable",
+        "CName": "删除自定义路由表"
+      },
+      {
+        "Name": "DeleteSecGroup",
+        "CName": "删除安全组"
+      },
+      {
+        "Name": "DeleteSecGroupRule",
+        "CName": "删除安全组规则"
+      },
+      {
+        "Name": "DeleteSecondaryIp",
+        "CName": "删除Ip"
+      },
+      {
+        "Name": "DeleteSnatDnatRule",
+        "CName": "删除NAT创建内外网IP映射规则"
+      },
+      {
+        "Name": "DeleteSnatRule",
+        "CName": "删除出口规则（SNAT规则）"
+      },
+      {
+        "Name": "DeleteSubnet",
+        "CName": "删除子网"
+      },
+      {
+        "Name": "DeleteVPC",
+        "CName": "删除VPC"
+      },
+      {
+        "Name": "DeleteVPCIntercom",
+        "CName": "删除VPC互通"
+      },
+      {
+        "Name": "DeleteWhiteListResource",
+        "CName": "删除NAT网关白名单列表"
+      },
+      {
+        "Name": "DescribeInstanceNetworkInterface",
+        "CName": "展示云主机绑定的网卡信息"
+      },
+      {
+        "Name": "DescribeNATGW",
+        "CName": "获取NAT网关信息"
+      },
+      {
+        "Name": "DescribeNATGWPolicy",
+        "CName": "展示NAT网关端口转发规则"
+      },
+      {
+        "Name": "DescribeNetworkAcl",
+        "CName": "获取网络ACL"
+      },
+      {
+        "Name": "DescribeNetworkAclAssociation",
+        "CName": "获取网络ACL的绑定关系列表"
+      },
+      {
+        "Name": "DescribeNetworkAclAssociationBySubnet",
+        "CName": "获取子网的ACL绑定信息"
+      },
+      {
+        "Name": "DescribeNetworkAclEntry",
+        "CName": "获取ACL的规则信息"
+      },
+      {
+        "Name": "DescribeNetworkInterface",
+        "CName": "展示虚拟网卡信息"
+      },
+      {
+        "Name": "DescribeResourceSecGroup",
+        "CName": "查询资源绑定的安全组信息"
+      },
+      {
+        "Name": "DescribeRouteTable",
+        "CName": "获取路由表详细信息(包括路由策略)"
+      },
+      {
+        "Name": "DescribeSecGroup",
+        "CName": "获取安全组信息"
+      },
+      {
+        "Name": "DescribeSecGroupResource",
+        "CName": "获取安全组绑定资源"
+      },
+      {
+        "Name": "DescribeSecondaryIp",
+        "CName": "查询SecondaryIp"
+      },
+      {
+        "Name": "DescribeSnatDnatRule",
+        "CName": "获取基于NAT创建的内外网IP映射规则信息"
+      },
+      {
+        "Name": "DescribeSnatRule",
+        "CName": "获取Nat网关的出口规则（SNAT规则）"
+      },
+      {
+        "Name": "DescribeSubnet",
+        "CName": "获取子网信息"
+      },
+      {
+        "Name": "DescribeSubnetResource",
+        "CName": "展示子网资源"
+      },
+      {
+        "Name": "DescribeVIP",
+        "CName": "获取内网虚拟IP信息"
+      },
+      {
+        "Name": "DescribeVPC",
+        "CName": "获取VPC信息"
+      },
+      {
+        "Name": "DescribeVPCIntercom",
+        "CName": "获取VPC互通信息"
+      },
+      {
+        "Name": "DescribeWhiteListResource",
+        "CName": "展示NAT网关白名单资源列表"
+      },
+      {
+        "Name": "DetachNetworkInterface",
+        "CName": "解绑云主机关联网卡"
+      },
+      {
+        "Name": "DisableUniEipDirectMode",
+        "CName": "关闭虚拟网卡EIP直通功能"
+      },
+      {
+        "Name": "DisassociateSecGroup",
+        "CName": "将资源从安全组解绑"
+      },
+      {
+        "Name": "EnableUniEipDirectMode",
+        "CName": "开启虚拟网卡EIP直通功能"
+      },
+      {
+        "Name": "EnableWhiteList",
+        "CName": "修改NAT网关白名单开关"
+      },
+      {
+        "Name": "GetAvailableResourceForPolicy",
+        "CName": "获取NAT网关可配置端口转发规则的资源信息"
+      },
+      {
+        "Name": "GetAvailableResourceForSnatRule",
+        "CName": "获得可添加snat规则（出口规则）的资源列表"
+      },
+      {
+        "Name": "GetAvailableResourceForWhiteList",
+        "CName": "获取NAT网关可添加白名单的资源"
+      },
+      {
+        "Name": "GetNetworkAclTargetResource",
+        "CName": "获取ACL规则应用目标列表"
+      },
+      {
+        "Name": "ListSubnetForNATGW",
+        "CName": "展示NAT网关可绑定的子网列表"
+      },
+      {
+        "Name": "ModifyRouteRule",
+        "CName": "路由策略增、删、改"
+      },
+      {
+        "Name": "MoveSecondaryIPMac",
+        "CName": "迁移SecondaryIP"
+      },
+      {
+        "Name": "ReleaseVIP",
+        "CName": "释放内网虚拟IP"
+      },
+      {
+        "Name": "SetGwDefaultExport",
+        "CName": "设置NAT网关的默认出口"
+      },
+      {
+        "Name": "SwitchToFirewall",
+        "CName": "切换至防火墙模式"
+      },
+      {
+        "Name": "SwitchToSecGroup",
+        "CName": "切换至安全组模式"
+      },
+      {
+        "Name": "UnassignIPv6",
+        "CName": "释放IPv6地址"
+      },
+      {
+        "Name": "UpdateNATGW",
+        "CName": "更新Nat网关基本信息"
+      },
+      {
+        "Name": "UpdateNATGWPolicy",
+        "CName": "更新NAT网关端口转发规则"
+      },
+      {
+        "Name": "UpdateNATGWSnatpool",
+        "CName": "更新NAT网关的Snatpool状态"
+      },
+      {
+        "Name": "UpdateNATGWSubnet",
+        "CName": "更新NAT网关绑定的子网"
+      },
+      {
+        "Name": "UpdateNetworkAcl",
+        "CName": "更改ACL"
+      },
+      {
+        "Name": "UpdateNetworkAclEntry",
+        "CName": "更新ACL的规则"
+      },
+      {
+        "Name": "UpdateNetworkInterfaceDefaultOutput",
+        "CName": "更新虚拟网卡默认出口"
+      },
+      {
+        "Name": "UpdateRouteTableAttribute",
+        "CName": "更新路由表基本信息"
+      },
+      {
+        "Name": "UpdateSecGroup",
+        "CName": "更新安全组基本信息"
+      },
+      {
+        "Name": "UpdateSecGroupAssociation",
+        "CName": "更换安全组绑定关系"
+      },
+      {
+        "Name": "UpdateSecGroupRule",
+        "CName": "更新安全组规则"
+      },
+      {
+        "Name": "UpdateSnatRule",
+        "CName": "更新出口规则（SNAT规则）"
+      },
+      {
+        "Name": "UpdateSubnetAttribute",
+        "CName": "更新子网信息"
+      },
+      {
+        "Name": "UpdateVIPAttribute",
+        "CName": "更新VIP信息"
+      },
+      {
+        "Name": "UpdateVPCIPv6",
+        "CName": "更新VPC IPv6网段"
+      },
+      {
+        "Name": "UpdateVPCNetwork",
+        "CName": "更新VPC网段"
+      }
+    ],
+    "github_path": "vpc-api"
+  }
+}
