@@ -1,4 +1,4 @@
-# UCloud Cloud Manager Skill
+# UCloud Manager Skill
 
 通过自然语言管理 UCloud 云资源，覆盖 43 个产品、907 个 API。
 
