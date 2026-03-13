@@ -47,7 +47,32 @@
     "必须先调用 DescribeUDiskUpgradePrice 获取价格差额。"
   ],
   "DeleteUDisk": [
-    "前置状态：云盘必须处于 Available 状态（未挂载）。如果已挂载，需先执行 DetachUDisk。"
+    "前置状态：云盘必须处于 Available 状态（未挂载）。如果已挂载，需先执行 DetachUDisk。",
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteUDBInstance": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteUDDBInstance": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteUInfluxdbInstance": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteUPgSQLInstance": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteUDiskSnapshot": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteUDBParamGroup": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteUInfluxdbDatabase": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteUInfluxdbDatabaseRP": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
   ],
   "CreatePHost": [
     "ImageId 必须通过 DescribePHostImage 获取，与云主机镜像不通用。"
@@ -66,5 +91,272 @@
   ],
   "CreateULB": [
     "创建后需通过 CreateVServer 添加监听器，再通过 AllocateBackend 添加后端节点。"
+  ],
+  "DeleteVPC": [
+    "⚠ 不可逆操作！VPC 内的所有资源（子网、路由表等）都会被一起删除。必须先向用户确认删除目标。"
+  ],
+  "DeleteSubnet": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteRouteTable": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteVPCIntercom": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteNetworkAcl": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteNetworkAclAssociation": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteNetworkAclEntry": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteNATGW": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteNATGWPolicy": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteSnatDnatRule": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteSnatRule": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteSecGroup": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteSecGroupRule": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteNetworkInterface": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteSecondaryIp": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteSecurityPolicy": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteWhiteListResource": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteVPNGateway": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteVPNTunnel": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteRemoteVPNGateway": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteULB": [
+    "⚠ 不可逆操作！负载均衡器下的所有监听器（VServer）和后端节点都会被一起删除。必须先向用户确认删除目标。"
+  ],
+  "DeleteVServer": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteListener": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteLoadBalancer": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteUPath": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteInterRegionBandwidth": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteUGAInstance": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteUGAForwarder": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteUGN": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DelUGN": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteUGNBwPackage": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteBucket": [
+    "⚠ 不可逆操作！Bucket 内的所有文件会被一起删除。必须先向用户确认删除目标。"
+  ],
+  "DeleteCORSRule": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteUFileLifeCycle": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteUFileSSLCert": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteCertificate": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeletePathXSSL": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteSSLBinding": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteGlobalSSHInstance": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteIsolationGroup": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteUHostKeyPairs": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteProject": [
+    "⚠ 不可逆操作！项目内的所有资源都会被一起删除。必须先向用户确认删除目标。"
+  ],
+  "TerminateProject": [
+    "⚠ 不可逆操作！项目内的所有资源都会被一起删除。必须先向用户确认删除目标。"
+  ],
+  "DeleteUser": [
+    "⚠ 不可逆操作！用户下的所有资源（子账号、策略等）都会被一起删除。必须先向用户确认删除目标。"
+  ],
+  "DeleteGroup": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteIAMPolicy": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeletePolicy": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteAccessKey": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteUMInferAPIKey": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteRepo": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteRepoImage": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteAppRepo": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteFunctionTemplate": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteCubeDeployment": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteCubePod": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteRoutePolicy": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteRule": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteTiDBService": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteUDNSRecord": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteUSMSSignature": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteUSMSTemplate": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteISMSSignature": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteISMSTemplate": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteUSMSSignatureQualification": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteUPhone": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteUPhoneImage": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteUPhoneServer": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteUPhoneShareBandwidth": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteUEcCustomImage": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteUEcSubnet": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteUEcVHost": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DeleteUPgSQLParamTemplate": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "TerminatePHost": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "TerminatePHostImage": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "TerminateULHostInstance": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "TerminateCompShareInstance": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "TerminateCompShareCustomImage": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "TerminateCustomImage": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "TerminateCharacter": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "TerminateMember": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DelUK8SCluster": [
+    "⚠ 不可逆操作！集群内的所有节点和工作负载都会被一起删除。必须先向用户确认删除目标。"
+  ],
+  "DelUK8SClusterNodeV2": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "RemoveUK8SNodeGroup": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "RemoveTargets": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "RemoveUFSVolume": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "RemoveUFSVolumeMountPoint": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "RemoveUPFSVolume": [
+    "⚠ 不可逆操作！必须先向用户确认删除目标。"
+  ],
+  "DetachDeleteUDisk": [
+    "⚠ 不可逆操作！卸载并删除云盘，数据将丢失。必须先向用户确认删除目标。"
+  ],
+  "GetUHostRefundPrice": [
+    "这是查询退订费用，不是实际退款操作。实际退款需用户确认。"
   ]
 }
