@@ -41,14 +41,12 @@ Environment variables (check before proceeding):
 User request → What kind of operation?
     │
     ├─ Vague create request ("创建一台xxx" but key specs are missing)
-    │   ├─ Resolve skill root first
     │   ├─ Route to product + action
     │   ├─ Ask whether the user wants fast-create with the minimum usable defaults
     │   ├─ If YES → read fast-create template, then continue
     │   └─ If NO  → stay on standard create flow and collect parameters
     │
     ├─ Explicit fast intent ("最便宜" / "最小配置" / "默认配置" / "随便开一台")
-    │   ├─ Resolve skill root first
     │   ├─ Route to product + action
     │   ├─ Confirm the user wants fast-create with minimum usable defaults
     │   ├─ Read the dedicated fast-create template only after confirmation
@@ -113,7 +111,7 @@ Ask a short confirmation first:
 - Fast-create branch: "是否按最小可用默认配置快速创建？我会只做最小必要校验，然后给你确认表。"
 - Standard branch: "如果不是，我继续按标准流程收集规格、镜像、网络和计费参数。"
 
-Only after the user explicitly chooses fast-create may you load `references/fast-create-template.md`.
+Only after the user explicitly chooses fast-create may you load `<skill-path>/references/fast-create-template.md`.
 
 ### Step 2: Pre-flight Checklist (write operations only)
 
