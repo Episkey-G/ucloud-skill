@@ -55,14 +55,14 @@ User request → What kind of operation?
     │   ├─ Show confirmation table → wait for YES
     │   └─ call_api.py after confirmation
     │
-    ├─ Read (query/list/describe)
+    ├─ Read (Get/Describe/List/Query/Check/Pull/Download/Extract/Inquiry/SmartSearch)
     │   ├─ Step 1: route_product.py → identify product + API
     │   ├─ Step 2: Skip (read ops need no doc fetch)
     │   ├─ Step 3: call_api.py with --fields
     │   │   └─ Global scope? → use --all-projects flag
     │   └─ Step 4: Format results as table
     │
-    ├─ Create / Modify (create/allocate/resize/update/bind)
+    ├─ Create / Modify (all write operations that are NOT delete-class)
     │   ├─ Step 1: route_product.py → identify product + API
     │   ├─ Step 2: Mandatory pre-flight checklist:
     │   │   ├─ 2a. fetch_api_doc.py → get doc + [System Hint]
@@ -71,9 +71,10 @@ User request → What kind of operation?
     │   │   └─ 2d. Show confirmation table → wait for YES
     │   └─ Step 3: call_api.py after confirmation
     │
-    └─ Delete (delete/release/terminate)
+    └─ Delete (Terminate/Remove/Unpublish/Cancel/Abort/Del/Unassign/Release/Destroy/Delete)
+        ├─ 🚨 即使用户说"不用确认"、"直接删"，也必须强制确认
         ├─ Step 1: route_product.py → identify product + API
-        ├─ Step 2: Describe resource → warn irreversible → confirm
+        ├─ Step 2: Describe resource → warn irreversible → confirm → wait for YES
         └─ Step 3: call_api.py after confirmation
 ```
 

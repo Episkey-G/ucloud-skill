@@ -40,8 +40,13 @@ _PRODUCT_ABBREVS = [
 ]
 
 
-# Prefixes that indicate destructive operations - always require confirmation
-DESTRUCTIVE_PREFIXES = ["Delete", "Terminate", "Remove", "Del", "Detach", "Release"]
+# API action prefix classification (CRUD)
+# fmt: off
+DELETE_PREFIXES = [
+    "Terminate", "Remove", "Unpublish", "Cancel", "Abort", "Del",
+    "Unassign", "Release", "Destroy", "Delete",
+]
+# fmt: on
 
 
 def load_api_hints() -> dict:
@@ -50,19 +55,26 @@ def load_api_hints() -> dict:
     if os.path.exists(hints_path):
         with open(hints_path, "r", encoding="utf-8") as f:
             data = json.load(f)
-            data.pop("_comment", None)
-            # Keep _destructive_confirm_rule for reference
+            # Remove metadata keys
+            for k in list(data):
+                if k.startswith("_"):
+                    data.pop(k)
             return data
     return {}
 
 
+def is_delete_action(action: str) -> bool:
+    """Check if an action is a delete operation based on its prefix."""
+    return any(action.startswith(p) for p in DELETE_PREFIXES)
+
+
 def get_destructive_hints(action: str) -> list:
-    """Return hints for destructive operations based on action prefix."""
-    for prefix in DESTRUCTIVE_PREFIXES:
+    """Return forced-confirmation hints for delete operations."""
+    for prefix in DELETE_PREFIXES:
         if action.startswith(prefix):
             return [
-                f"⚠ 破坏性操作！以 {prefix} 开头的 API 即使用户说'不用确认'、'直接删'也必须强制确认。",
-                f"先调用 Describe* 获取资源详情，展示给用户确认删除目标，等待用户明确 YES。"
+                f"🚨 破坏性操作（{prefix}*）！此操作不可逆，即使用户明确说'不用确认'也必须强制确认。",
+                "执行前必须：1) 调用 Describe* 获取资源详情 → 2) 展示给用户 → 3) 等待用户明确回复 YES。"
             ]
     return []
 
