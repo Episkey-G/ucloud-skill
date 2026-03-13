@@ -1,6 +1,5 @@
 {
   "_comment": "API级前置操作提示。fetch_api_doc.py 输出参数前自动注入。Key 为 Action 名称。",
-  "_destructive_confirm_rule": "所有以 Delete/Terminate/Remove/Del/Detach/Release 开头的 API 均为破坏性操作。即使用户说'不用确认'、'直接删'等，仍必须展示资源详情并等待用户明确 YES 后才能执行。",
   "CreateUHostInstance": [
     "必须先调用 DescribeAvailableInstanceTypes 获取可用机型（MachineType）和支持的磁盘类型。",
     "必须先调用 DescribeImage 获取镜像列表，选择 ImageId。",
