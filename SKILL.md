@@ -6,7 +6,7 @@ allowed-tools: Bash(python *)
 
 # UCloud Resource Manager
 
-Manage 907 UCloud APIs across 43 products. API parameter definitions are fetched on-demand from GitHub — no local data maintenance needed.
+Manage 900+ UCloud APIs across 40+ products. The product catalog is built at runtime from the remote GitHub registry (`apinav.json`), so new products appear automatically without local updates. API parameter definitions are also fetched on-demand from GitHub.
 
 **Scripts (all under `<skill-path>/scripts/`):**
 
@@ -34,6 +34,19 @@ Environment variables (check before proceeding):
 - `UCLOUD_PRIVATE_KEY` (required)
 - `UCLOUD_REGION` (optional, default region)
 - `UCLOUD_PROJECT_ID` (optional, default project)
+
+### Environment Probe (first use only)
+
+When `UCLOUD_REGION` and `UCLOUD_PROJECT_ID` are both unset, run a quick probe before any business API call to discover the account context:
+
+```bash
+python3 <skill-path>/scripts/call_api.py GetProjectList '{"Limit":100}'
+python3 <skill-path>/scripts/call_api.py ListRegions '{}'
+```
+
+Use the results to fill Region and ProjectId in subsequent calls. If only one project exists, use it directly. If multiple, ask the user to choose.
+
+This avoids repeated auto-fix retries on every API call when the environment is not pre-configured. You only need to do this once per session — cache the resolved values for later steps.
 
 ## Decision Tree
 
@@ -224,7 +237,13 @@ python3 <skill-path>/scripts/call_api.py CreateUHostInstance '{"Region":"cn-bj2"
 ### Step 4: Interpret the Response
 
 - `RetCode`: 0 = success, non-zero = error
-- Error: `call_api.py` auto-prints a `[System Hint]` diagnosis with actionable suggestions and a link to the product's error code reference. Follow its guidance.
+- **Auto-fix**: `call_api.py` automatically handles some common errors:
+  - Missing ProjectId → queries GetProjectList, auto-fills if only one project exists, otherwise lists options
+  - Missing Region → queries ListRegions and lists available regions
+  - Missing Zone → queries ListZones and lists available zones for the current region
+  - RetCode 299 (IAM error) → checks ProjectId first before treating as real permission denial
+- **`[Auto-Fix Suggestion]`**: for errors that can't be auto-retried, the script prints specific commands you can execute to resolve the issue. Follow these suggestions.
+- **`[System Hint]`**: general error diagnosis with actionable hints and error code reference links. Use these for context.
 - Success: extract key info (resource IDs, status, IPs) and present clearly
 - **If a random password was generated**: display it in plaintext — user's only chance to see it
 - For list operations: format results as a readable table

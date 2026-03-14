@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """Fetch an API's documentation from GitHub and inject prerequisite hints.
 
-Instead of reading local JSON files, fetches the official API doc from
-UCloudDoc-Team/api on GitHub. The model reads the Markdown table directly
-— no parsing needed.
+Uses the remote registry to look up the product's github_path and the
+exact URL path from _sidebar.md — no camelCase-to-snake_case conversion needed.
 
 Usage:
     python3 fetch_api_doc.py <product> <ActionName>
@@ -17,27 +16,19 @@ Output:
     + raw Markdown from GitHub (parameter tables, examples, etc.)
 """
 
+from __future__ import annotations
+
 import json
 import os
-import re
 import sys
-import time
-import urllib.request
-import urllib.error
 
 SKILL_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GITHUB_BASE = "https://raw.githubusercontent.com/UCloudDoc-Team/api/master"
-CACHE_DIR = os.path.join("/tmp", "ucloud_skill_cache")
-CACHE_TTL = 3600  # 1 hour
 
-# UCloud product abbreviations that should stay as one unit in snake_case conversion.
-# E.g., "UHost" → "uhost" (not "u_host"), "EIP" → "eip" (not "e_i_p").
-_PRODUCT_ABBREVS = [
-    'UHost', 'UDisk', 'UNet', 'UDB', 'ULB', 'UMem', 'UFile', 'UCDN',
-    'UPHost', 'UPhone', 'UK8S', 'UEC', 'UFS', 'UGN', 'UDDB', 'UDTS',
-    'UHub', 'UDPN', 'UDI', 'USLK', 'UNVS', 'UPFS', 'UAAA', 'UDBProxy',
-    'EIP', 'VPC', 'IAM', 'STS', 'PHost', 'PathX', 'TiDB',
-]
+# Allow imports from scripts/
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from cache import cached_fetch
+from registry import build_product_registry, get_action_url_path
 
 
 # API action prefix classification (CRUD)
@@ -79,64 +70,22 @@ def get_destructive_hints(action: str) -> list:
     return []
 
 
-def load_index() -> dict:
-    """Load the product index."""
-    index_path = os.path.join(SKILL_ROOT, "apis", "index.json")
-    with open(index_path, "r", encoding="utf-8") as f:
-        return json.load(f)
+def _find_product_info(product: str, registry: dict) -> tuple[str, dict] | None:
+    """Find product info by name, case-insensitive.
 
-
-def camel_to_snake(name: str) -> str:
-    """Convert CamelCase to snake_case for GitHub URL.
-
-    Preserves UCloud product abbreviations as single units:
-        CreateUHostInstance -> create_uhost_instance
-        DescribeEIP -> describe_eip
-        GetUHostInstancePrice -> get_uhost_instance_price
+    Searches registry keys and display_names.
     """
-    # Protect known product abbreviations by lowercasing them as units
-    for abbrev in sorted(_PRODUCT_ABBREVS, key=len, reverse=True):
-        name = name.replace(abbrev, '_' + abbrev.lower() + '_')
-    # Clean up: collapse multiple underscores, strip leading/trailing
-    name = re.sub(r'_+', '_', name).strip('_')
-    # Handle remaining CamelCase transitions
-    s = re.sub(r'([a-z0-9])([A-Z])', r'\1_\2', name)
-    s = re.sub(r'([A-Z]+)([A-Z][a-z])', r'\1_\2', s)
-    return s.lower()
-
-
-def fetch_doc(github_path: str, action_snake: str) -> str:
-    """Fetch API doc from GitHub with local disk cache. Returns markdown content or error message."""
-    url = f"{GITHUB_BASE}/{github_path}/{action_snake}.md"
-    cache_key = f"{github_path}_{action_snake}.md".replace("/", "_")
-    cache_path = os.path.join(CACHE_DIR, cache_key)
-
-    # Check cache
-    if os.path.exists(cache_path):
-        age = time.time() - os.path.getmtime(cache_path)
-        if age < CACHE_TTL:
-            with open(cache_path, "r", encoding="utf-8") as f:
-                return f.read()
-
-    try:
-        req = urllib.request.Request(url, headers={"User-Agent": "ucloud-skill/1.0"})
-        with urllib.request.urlopen(req, timeout=15) as resp:
-            content = resp.read().decode("utf-8")
-        # Write cache
-        os.makedirs(CACHE_DIR, exist_ok=True)
-        with open(cache_path, "w", encoding="utf-8") as f:
-            f.write(content)
-        return content
-    except urllib.error.HTTPError as e:
-        if e.code == 404:
-            return f"ERROR: Document not found at {url}\nThe action name might be wrong. Check the API list from route_product.py."
-        return f"ERROR: HTTP {e.code} fetching {url}: {e.reason}"
-    except Exception as e:
-        # On network failure, try stale cache as fallback
-        if os.path.exists(cache_path):
-            with open(cache_path, "r", encoding="utf-8") as f:
-                return f.read()
-        return f"ERROR: Failed to fetch {url}: {e}"
+    product_lower = product.lower()
+    for key, info in registry.items():
+        if key == product_lower:
+            return key, info
+        if info.get("display_name", "").lower() == product_lower:
+            return key, info
+        # Also check extra_terms for cases like "EIP" → UNet
+        for term in info.get("extra_terms", []):
+            if term.lower() == product_lower:
+                return key, info
+    return None
 
 
 def main():
@@ -148,24 +97,28 @@ def main():
     product = sys.argv[1]
     action = sys.argv[2]
 
-    # Look up product in index
-    index = load_index()
-    product_info = index.get(product)
-    if not product_info:
-        # Try case-insensitive match
-        for k, v in index.items():
-            if k.lower() == product.lower():
-                product = k
-                product_info = v
-                break
+    # Look up product in registry
+    registry = build_product_registry()
+    result = _find_product_info(product, registry)
 
-    if not product_info:
-        print(f"ERROR: Product '{product}' not found in index.")
-        print(f"Available: {', '.join(sorted(index.keys()))}")
+    if not result:
+        available = ", ".join(
+            info.get("display_name", "") or key.upper()
+            for key, info in sorted(registry.items())
+        )
+        print(f"ERROR: Product '{product}' not found in registry.")
+        print(f"Available: {available}")
         sys.exit(1)
 
+    key, product_info = result
     github_path = product_info["github_path"]
-    action_snake = camel_to_snake(action)
+
+    # Get the exact URL path from _sidebar.md (no camel_to_snake needed)
+    action_path = get_action_url_path(github_path, action)
+    if not action_path:
+        print(f"WARNING: Action '{action}' not found in {github_path}/_sidebar.md.")
+        print(f"Falling back to lowercase action name.")
+        action_path = action.lower()
 
     # === Deterministic context injection: API-level hints ===
     api_hints = load_api_hints()
@@ -186,10 +139,16 @@ def main():
         print()
 
     # Fetch and output the doc
-    print(f"Source: {GITHUB_BASE}/{github_path}/{action_snake}.md")
+    url = f"{GITHUB_BASE}/{github_path}/{action_path}.md"
+    print(f"Source: {url}")
     print()
-    content = fetch_doc(github_path, action_snake)
-    print(content)
+
+    try:
+        content = cached_fetch(url, f"{github_path}_{action_path}.md")
+        print(content)
+    except RuntimeError as e:
+        print(f"ERROR: {e}")
+        sys.exit(1)
 
     # === Call template: show ready-to-use command ===
     print()

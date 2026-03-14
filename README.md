@@ -1,6 +1,6 @@
 # UCloud Manager Skill
 
-通过自然语言管理 UCloud 云资源，覆盖 43 个产品、907 个 API。
+通过自然语言管理 UCloud 云资源，覆盖 40+ 个产品、900+ 个 API。产品目录从远端 GitHub 注册表自动构建，新产品上线即可用。
 
 ## 前置准备
 
@@ -49,18 +49,21 @@ ucloud-skill/
 │   ├── route_product.py      # 产品路由 + API 列表 + SOP 提示注入
 │   ├── fetch_api_doc.py      # 从 GitHub 获取 API 文档 + 前置依赖提示
 │   ├── gen_password.py       # 随机密码生成
-│   └── call_api.py           # API 调用（含签名计算）
+│   ├── call_api.py           # API 调用（含签名计算）
+│   ├── registry.py           # 远端产品注册表（从 apinav.json 构建）
+│   └── cache.py              # 统一 HTTP 缓存模块
+├── config/               # 本地配置
+│   └── tier1.json            # Tier-1 产品列表
 ├── hints/                # 业务知识数据（JSON，易维护）
 │   ├── product_hints.json    # 产品级 SOP 提示
 │   └── api_hints.json        # API 级前置依赖提示
-├── apis/                 # 产品索引
-│   └── index.json            # 产品路由 + API 摘要（合并版）
 └── references/           # 按需加载的参考文档
 ```
 
 ## 架构特点
 
-- **零本地API数据维护**：参数定义从 [UCloudDoc-Team/api](https://github.com/UCloudDoc-Team/api) 实时获取，始终最新
+- **零本地产品目录维护**：产品注册表从 [UCloudDoc-Team/api](https://github.com/UCloudDoc-Team/api) 的 `apinav.json` 运行时构建，新产品自动可用
+- **零本地API数据维护**：参数定义同样从 GitHub 实时获取，始终最新
 - **确定性上下文注入**：脚本输出自动包含 `[System Hint]`，消除模型盲猜
 - **代码与数据分离**：添加新 hint 只需编辑 `hints/*.json`，无需改 Python
 
@@ -71,6 +74,8 @@ ucloud-skill/
 - **新增产品 SOP**：编辑 `hints/product_hints.json`
 - **新增 API 前置依赖**：编辑 `hints/api_hints.json`
 
-### 更新产品索引
+### 产品目录
 
-当 UCloud 新增产品时，在 `apis/index.json` 中添加产品条目（别名 + API 列表）。
+产品目录从远端 `apinav.json` 自动构建，无需手动维护。新产品上线后，`route_product.py` 会自动发现。
+
+Tier-1 产品列表在 `config/tier1.json` 中维护（仅影响输出中的 tier1 标记和 SOP 注入）。

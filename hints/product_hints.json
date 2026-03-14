@@ -1,5 +1,5 @@
 {
-  "_comment": "产品级SOP提示。route_product.py 匹配到产品后自动注入到输出中。Key 为产品名（与 index.json 一致）。",
+  "_comment": "产品级SOP提示。route_product.py 匹配到产品后自动注入到输出中。Key 为产品名（大小写不敏感匹配）。",
   "UHost": [
     "脚本入口固定为 scripts/route_product.py、scripts/fetch_api_doc.py、scripts/call_api.py、scripts/gen_password.py。不要编造脚本名，也不要猜 skill 路径。",
     "常用地域代码参考：cn-bj2（北京二）、cn-sh2（上海二）、hk（香港）。不要把自然语言地域名直接当 API Region 传入。",

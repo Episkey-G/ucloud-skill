@@ -4,7 +4,10 @@
 Features:
   --fields field1,field2,...   Filter response to specified fields
   --all-projects               Auto-scan all projects (GetProjectList + iterate)
+  Auto-fix: missing ProjectId/Region/Zone are resolved automatically when possible.
 """
+
+from __future__ import annotations
 
 import hashlib
 import json
@@ -159,32 +162,17 @@ def call_api(action: str, params: dict) -> dict:
         return {"error": str(e)}
 
 
-def _load_action_to_product_map() -> dict:
-    """Build a reverse map from Action name to product github_path using index.json."""
-    skill_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    index_path = os.path.join(skill_root, "apis", "index.json")
-    action_map = {}
+def _get_github_path_for_action(action: str) -> str | None:
+    """Look up which product owns a given action via the remote registry.
+
+    Falls back gracefully if registry is unavailable (network issues, etc.).
+    """
     try:
-        with open(index_path, "r", encoding="utf-8") as f:
-            index = json.load(f)
-        for product, info in index.items():
-            github_path = info.get("github_path", "")
-            for api in info.get("apis", []):
-                action_map[api["Name"]] = github_path
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        from registry import get_github_path_for_action
+        return get_github_path_for_action(action)
     except Exception:
-        pass
-    return action_map
-
-
-# Lazy-loaded on first use
-_ACTION_PRODUCT_MAP: Optional[dict] = None
-
-
-def _get_action_product_map() -> dict:
-    global _ACTION_PRODUCT_MAP
-    if _ACTION_PRODUCT_MAP is None:
-        _ACTION_PRODUCT_MAP = _load_action_to_product_map()
-    return _ACTION_PRODUCT_MAP
+        return None
 
 
 def diagnose_error(result: dict, action: str) -> None:
@@ -207,9 +195,8 @@ def diagnose_error(result: dict, action: str) -> None:
             hints.append(suggestion)
             break  # one pattern match is enough
 
-    # Generate product-specific error doc link via index.json reverse lookup
-    action_map = _get_action_product_map()
-    github_path = action_map.get(action)
+    # Generate product-specific error doc link via remote registry
+    github_path = _get_github_path_for_action(action)
     if github_path:
         doc_url = f"https://github.com/UCloudDoc-Team/api/blob/master/{github_path}/error_code.md"
         hints.append(f"完整错误码参考: {doc_url}")
@@ -219,6 +206,24 @@ def diagnose_error(result: dict, action: str) -> None:
         print(f"[System Hint] 错误诊断 (RetCode: {ret_code}):")
         for h in hints:
             print(f"  ⚠ {h}")
+        print("=" * 50)
+
+    # Structured auto-fix suggestions for errors not handled by try_auto_fix
+    suggestions = []
+    if ret_code == 172 and message:
+        suggestions.append("如果怀疑是 ProjectId 问题，请运行: call_api.py GetProjectList '{}' 确认项目列表。")
+    if ret_code == 299:
+        suggestions.append("RetCode 299 常见于缺少 ProjectId 而非真正的权限不足。请先确认 ProjectId 是否正确。")
+    if re.search(r"not enough|insufficient|资源不足|售罄", message, re.I):
+        suggestions.append("建议尝试: 1) 换可用区 2) 调小配置 3) 检查配额。")
+    if re.search(r"stopped|关机", message, re.I):
+        suggestions.append(f"建议执行: call_api.py Stop{action.replace('Resize','').replace('Reinstall','').replace('Reset','')} 先关机再重试。")
+
+    if suggestions:
+        print(f"\n{'='*50}")
+        print("[Auto-Fix Suggestion] 可尝试的修复操作：")
+        for s in suggestions:
+            print(f"  → {s}")
         print("=" * 50)
 
 
@@ -235,6 +240,109 @@ def check_empty_result(result: dict, params: dict) -> None:
         print("[System Hint] 当前项目下未找到资源。")
         print("  建议使用 --all-projects 参数跨项目查询，或调用 GetProjectList 检查其他项目。")
         print("=" * 50)
+
+
+# Account-level actions that never need Region/Zone/ProjectId — skip auto-fix for these.
+ACCOUNT_LEVEL_ACTIONS = frozenset({
+    "GetProjectList", "ListRegions", "ListZones", "GetBalance",
+    "GetRegion", "DescribeChargeYear",
+})
+
+
+def _find_data_array(result: dict) -> list:
+    """Extract the main data array from an API response."""
+    for k, v in result.items():
+        if isinstance(v, list) and k not in ("RetCode", "Message", "TotalCount", "Action"):
+            return v
+    return []
+
+
+def try_auto_fix(action: str, params: dict, result: dict) -> dict | None:
+    """Attempt to auto-fix common missing-parameter errors and retry.
+
+    Auto-fix rules:
+      1. Missing ProjectId → call GetProjectList.
+         - Single project: fill in and retry silently.
+         - Multiple projects: list them and let the user choose (no retry).
+      2. Missing Region → call ListRegions, list options (no retry).
+      3. Missing Zone  → call ListZones, list options (no retry).
+
+    Returns the retried API result on successful auto-fix, or None if no fix was possible.
+    """
+    if action in ACCOUNT_LEVEL_ACTIONS:
+        return None
+
+    ret_code = result.get("RetCode", 0)
+    message = result.get("Message", "")
+
+    # ── 1. Missing ProjectId ──────────────────────────────────────────────
+    # Triggers: RetCode 292 (project not found), 299 (IAM — often a missing
+    # ProjectId rather than a real permission issue), 172 without ProjectId,
+    # or RetCode 100 with "ProjectId" in the message.
+    needs_project_fix = (
+        ret_code == 292
+        or (ret_code == 299 and "ProjectId" not in params)
+        or (ret_code == 172 and "ProjectId" not in params)
+        or (ret_code == 100 and re.search(r"ProjectId", message, re.I))
+    )
+
+    if needs_project_fix and "ProjectId" not in params:
+        print(f"\n[Auto-Fix] 检测到可能缺少 ProjectId，正在查询项目列表...")
+        proj_result = call_api("GetProjectList", {"Limit": 100})
+        if proj_result.get("RetCode") == 0:
+            projects = proj_result.get("ProjectSet", [])
+            if len(projects) == 1:
+                proj_id = projects[0]["ProjectId"]
+                proj_name = projects[0].get("ProjectName", proj_id)
+                print(f"[Auto-Fix] 发现唯一项目: {proj_name} ({proj_id})，自动补填并重试...")
+                params["ProjectId"] = proj_id
+                return call_api(action, params)
+            elif len(projects) > 1:
+                print(f"[Auto-Fix] 发现 {len(projects)} 个项目，请指定 ProjectId：")
+                for p in projects:
+                    print(f"  - {p.get('ProjectName', '?')} → {p['ProjectId']}")
+                return None
+        return None
+
+    # ── 2. Missing Region ─────────────────────────────────────────────────
+    if (ret_code == 100
+            and re.search(r"Region", message, re.I)
+            and "Region" not in params
+            and not os.environ.get("UCLOUD_REGION")):
+        print(f"\n[Auto-Fix] 检测到缺少 Region，正在查询可用地域...")
+        region_result = call_api("ListRegions", {})
+        if region_result.get("RetCode") == 0:
+            regions = _find_data_array(region_result)
+            if regions:
+                print("[Auto-Fix] 可用地域：")
+                for r in regions:
+                    region_id = r.get("Region", "?")
+                    region_name = r.get("RegionName", "")
+                    print(f"  - {region_id}  {region_name}")
+                print("[Auto-Fix] 请在参数中指定 Region 后重试。")
+        return None
+
+    # ── 3. Missing Zone ───────────────────────────────────────────────────
+    if (ret_code == 100
+            and re.search(r"Zone", message, re.I)
+            and "Zone" not in params
+            and not os.environ.get("UCLOUD_ZONE")):
+        region = params.get("Region", os.environ.get("UCLOUD_REGION", ""))
+        if region:
+            print(f"\n[Auto-Fix] 检测到缺少 Zone，正在查询 {region} 的可用区...")
+            zone_result = call_api("ListZones", {"Region": region})
+            if zone_result.get("RetCode") == 0:
+                zones = _find_data_array(zone_result)
+                if zones:
+                    print(f"[Auto-Fix] {region} 可用区：")
+                    for z in zones:
+                        zone_id = z.get("Zone", "?")
+                        zone_name = z.get("ZoneName", "")
+                        print(f"  - {zone_id}  {zone_name}")
+                    print("[Auto-Fix] 请在参数中指定 Zone 后重试。")
+        return None
+
+    return None
 
 
 def extract_fields(data, fields: list):
@@ -415,6 +523,12 @@ def main():
         run_all_projects(action, params, fields)
     else:
         result = call_api(action, params)
+
+        # Auto-fix: attempt to resolve missing ProjectId/Region/Zone
+        if result.get("RetCode", 0) != 0:
+            fixed = try_auto_fix(action, params, result)
+            if fixed is not None:
+                result = fixed
 
         # Error diagnosis
         if result.get("RetCode", 0) != 0:
