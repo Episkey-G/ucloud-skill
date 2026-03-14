@@ -57,7 +57,10 @@ def main():
         sys.exit(1)
 
     keyword = sys.argv[1]
-    registry = build_product_registry()
+    # Derive tier1 set from product_hints.json keys — products with SOP hints are tier1
+    product_hints = load_product_hints()
+    tier1_keys = {k.lower() for k in product_hints}
+    registry = build_product_registry(tier1_keys)
     matches = find_product(keyword, registry)
 
     if not matches:
@@ -107,7 +110,6 @@ def main():
         print("APIs: (failed to fetch from GitHub, check network)")
 
     # Deterministic context injection: product-specific SOP hints
-    product_hints = load_product_hints()
     hint_list = _match_hint_key(key, display_name, product_hints)
     if hint_list:
         print(f"\n{'='*50}")

@@ -52,8 +52,6 @@ ucloud-skill/
 │   ├── call_api.py           # API 调用（含签名计算）
 │   ├── registry.py           # 远端产品注册表（从 apinav.json 构建）
 │   └── cache.py              # 统一 HTTP 缓存模块
-├── config/               # 本地配置
-│   └── tier1.json            # Tier-1 产品列表
 ├── hints/                # 业务知识数据（JSON，易维护）
 │   ├── product_hints.json    # 产品级 SOP 提示
 │   └── api_hints.json        # API 级前置依赖提示
@@ -78,4 +76,4 @@ ucloud-skill/
 
 产品目录从远端 `apinav.json` 自动构建，无需手动维护。新产品上线后，`route_product.py` 会自动发现。
 
-Tier-1 产品列表在 `config/tier1.json` 中维护（仅影响输出中的 tier1 标记和 SOP 注入）。
+Tier-1 产品由 `hints/product_hints.json` 的 key 自动派生——有 SOP hint 的产品即为 tier1，无需单独维护列表。

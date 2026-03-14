@@ -8,27 +8,15 @@ from per-product _sidebar.md files.
 from __future__ import annotations
 
 import json
-import os
 import re
-from typing import Optional
 
 from cache import cached_fetch
 
-SKILL_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GITHUB_BASE = "https://raw.githubusercontent.com/UCloudDoc-Team/api/master"
 APINAV_URL = f"{GITHUB_BASE}/apinav.json"
 
 # Lazy-loaded singleton
 _REGISTRY: dict | None = None
-
-
-def _load_tier1() -> set:
-    """Load tier1 product list from config/tier1.json."""
-    path = os.path.join(SKILL_ROOT, "config", "tier1.json")
-    if os.path.exists(path):
-        with open(path, "r", encoding="utf-8") as f:
-            return {k.lower() for k in json.load(f)}
-    return set()
 
 
 def _extract_github_path(links: str) -> str:
@@ -80,14 +68,17 @@ def _parse_product_name(full_name: str) -> tuple[str, str, list[str]]:
     return cname, display_name, extra_terms
 
 
-def _build_from_apinav(raw_json: str) -> dict:
+def _build_from_apinav(raw_json: str, tier1_keys: set | None = None) -> dict:
     """Parse apinav.json and build the product registry.
 
     Returns dict keyed by github_path prefix (e.g., "uhost", "vpc").
     Multiple apinav entries sharing a github_path are merged (e.g., ULB ALB/CLB).
+
+    tier1_keys: set of lowercase product keys to mark as tier1.
+                Derived from product_hints.json keys by the caller.
     """
     data = json.loads(raw_json)
-    tier1_set = _load_tier1()
+    tier1_set = tier1_keys or set()
     registry = {}
 
     for category in data.get("api", []):
@@ -129,17 +120,21 @@ def _build_from_apinav(raw_json: str) -> dict:
     return registry
 
 
-def build_product_registry() -> dict:
+def build_product_registry(tier1_keys: set | None = None) -> dict:
     """Build or return cached product registry from remote apinav.json.
 
     Returns dict keyed by product key (e.g., "uhost", "vpc", "ulb").
+
+    tier1_keys: set of lowercase product keys to mark as tier1.
+                When omitted, no products are marked tier1.
+                Callers should derive this from product_hints.json keys.
     """
     global _REGISTRY
     if _REGISTRY is not None:
         return _REGISTRY
 
     raw = cached_fetch(APINAV_URL, "apinav.json")
-    _REGISTRY = _build_from_apinav(raw)
+    _REGISTRY = _build_from_apinav(raw, tier1_keys)
     return _REGISTRY
 
 
