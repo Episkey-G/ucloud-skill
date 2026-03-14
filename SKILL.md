@@ -6,258 +6,175 @@ allowed-tools: Bash(python *)
 
 # UCloud Resource Manager
 
-Manage 900+ UCloud APIs across 40+ products. The product catalog is built at runtime from the remote GitHub registry (`apinav.json`), so new products appear automatically without local updates. API parameter definitions are also fetched on-demand from GitHub.
+Manage 900+ UCloud APIs across 40+ products. The product catalog is built at runtime from the remote GitHub registry, so new products appear automatically. API docs are fetched on-demand from GitHub.
 
-**Scripts (all under `<skill-path>/scripts/`):**
+All script paths use `<skill-path>` as a placeholder — the skill framework resolves it at runtime. Only use the 4 scripts listed below; never invent script names or guess parameter values.
 
-| Script | Purpose | When to use |
-|--------|---------|-------------|
-| `route_product.py <keyword>` | Identify product + list its APIs | Always — Step 1 |
-| `fetch_api_doc.py <Product> <Action>` | Fetch API doc from GitHub + inject hints | Write operations — Step 2 |
-| `gen_password.py` | Generate random password + base64 | Create with password |
-| `call_api.py <Action> '<params>' [--fields ...] [--all-projects]` | Execute API call | Always — Step 3 |
+| Script | Purpose | When |
+|--------|---------|------|
+| `route_product.py <keyword>` | Identify product + list APIs | Step 1 |
+| `fetch_api_doc.py <Product> <Action>` | Fetch API doc + inject hints | Step 2 (write ops) |
+| `gen_password.py` | Random password + base64 | Create with password |
+| `call_api.py <Action> '<params>' [--fields] [--all-projects]` | Execute API call | Step 3 |
 
-**Auth**: `call_api.py` 自动读取环境变量 `UCLOUD_PUBLIC_KEY` / `UCLOUD_PRIVATE_KEY` 并计算签名，无需手动传入密钥或处理签名。
+## Setup
 
-## Path Discipline
+Check environment variables before proceeding:
+- `UCLOUD_PUBLIC_KEY` / `UCLOUD_PRIVATE_KEY` (required) — `call_api.py` reads these automatically for signature calculation
+- `UCLOUD_REGION` (optional) — fallback default region
+- `UCLOUD_PROJECT_ID` (optional) — fallback default project
 
-All script paths in this document use `<skill-path>` as a placeholder. The skill framework automatically resolves it to the actual absolute path at runtime. Do not guess or hardcode the path.
-
-Rules:
-1. Never invent script names. Only use the 4 scripts listed above.
-2. Never guess parameter names, region codes, image IDs, machine types, or disk types.
-
-## Prerequisites
-
-Environment variables (check before proceeding):
-- `UCLOUD_PUBLIC_KEY` (required)
-- `UCLOUD_PRIVATE_KEY` (required)
-- `UCLOUD_REGION` (optional, default region)
-- `UCLOUD_PROJECT_ID` (optional, default project)
-
-### Environment Probe (first use only)
-
-When `UCLOUD_REGION` and `UCLOUD_PROJECT_ID` are both unset, run a quick probe before any business API call to discover the account context:
+**Environment probe** (once per session, when Region and ProjectId are both unset):
 
 ```bash
 python3 <skill-path>/scripts/call_api.py GetProjectList '{"Limit":100}'
 python3 <skill-path>/scripts/call_api.py ListRegions '{}'
 ```
 
-Use the results to fill Region and ProjectId in subsequent calls. If only one project exists, use it directly. If multiple, ask the user to choose.
+Cache the resolved Region and ProjectId for all subsequent calls. If multiple projects exist, ask the user to choose. If the user specifies a region, use it directly; if not and `UCLOUD_REGION` is unset, ask.
 
-This avoids repeated auto-fix retries on every API call when the environment is not pre-configured. You only need to do this once per session — cache the resolved values for later steps.
-
-## Decision Tree
+## Workflow Overview
 
 ```
-User request → What kind of operation?
+User request
     │
-    ├─ Vague create request ("创建一台xxx" but key specs are missing)
-    │   ├─ Route to product + action
-    │   ├─ Ask whether the user wants fast-create with the minimum usable defaults
-    │   ├─ If YES → read fast-create template, then continue
-    │   └─ If NO  → stay on standard create flow and collect parameters
+    ├─ Read (Get/Describe/List/Query/Check)
+    │   Step 1 → route_product.py
+    │   Step 2 → skip
+    │   Step 3 → call_api.py --fields --all-projects
     │
-    ├─ Explicit fast intent ("最便宜" / "最小配置" / "默认配置" / "随便开一台")
-    │   ├─ Route to product + action
-    │   ├─ Confirm the user wants fast-create with minimum usable defaults
-    │   ├─ Read the dedicated fast-create template only after confirmation
-    │   ├─ Skip price comparison and speculative retries
-    │   ├─ Execute only the minimum live checks required by the template
-    │   ├─ Show confirmation table → wait for YES
-    │   └─ call_api.py after confirmation
+    ├─ Create / Modify
+    │   Step 1 → route_product.py
+    │   Step 2 → fetch_api_doc.py → execute prerequisites → build params → confirm
+    │   Step 3 → call_api.py (after YES)
     │
-    ├─ Read (Get/Describe/List/Query/Check/Pull/Download/Extract/Inquiry/SmartSearch)
-    │   ├─ Step 1: route_product.py → identify product + API
-    │   ├─ Step 2: Skip (read ops need no doc fetch)
-    │   ├─ Step 3: call_api.py with --fields
-    │   │   └─ Global scope? → use --all-projects flag
-    │   └─ Step 4: Format results as table
+    ├─ Delete (Terminate/Release/Remove/Destroy/Delete/...)
+    │   Step 1 → route_product.py
+    │   Step 2 → describe resource → warn irreversible → confirm (mandatory, even if user says "直接删")
+    │   Step 3 → call_api.py (after YES)
     │
-    ├─ Create / Modify (all write operations that are NOT delete-class)
-    │   ├─ Step 1: route_product.py → identify product + API
-    │   ├─ Step 2: Mandatory pre-flight checklist:
-    │   │   ├─ 2a. fetch_api_doc.py → get doc + [System Hint]
-    │   │   ├─ 2b. Execute EVERY [System Hint] prerequisite (no skipping)
-    │   │   ├─ 2c. Build params from doc table + billing defaults
-    │   │   └─ 2d. Show confirmation table → wait for YES
-    │   └─ Step 3: call_api.py after confirmation
-    │
-    └─ Delete (Terminate/Remove/Unpublish/Cancel/Abort/Del/Unassign/Release/Destroy/Delete)
-        ├─ 🚨 即使用户说"不用确认"、"直接删"，也必须强制确认
-        ├─ Step 1: route_product.py → identify product + API
-        ├─ Step 2: Describe resource → warn irreversible → confirm → wait for YES
-        └─ Step 3: call_api.py after confirmation
+    └─ Fast Create ("最便宜" / "最小配置" / "默认配置" / vague create with missing specs)
+        Step 1 → route_product.py
+        Ask user: "是否按最小可用默认配置快速创建？" — only load fast-create template after explicit YES
+        Step 2 → minimum live checks per template → confirm
+        Step 3 → call_api.py (after YES)
 ```
 
-## Workflow
+Multi-product requests (e.g., "create host + bind EIP + attach disk"): handle each sub-task sequentially, extracting resource IDs from each response to chain into the next step.
 
-### Step 1: Route to Product + Pick API
+## Step 1: Route to Product
 
-Run the routing script with the user's keyword:
 ```bash
 python3 <skill-path>/scripts/route_product.py <keyword>
 ```
 
-The script outputs:
-- **Single match**: product name, tier-1 flag, full API list, and `[System Hint]` SOP
-- **Multiple matches**: lists all candidates — ask user to clarify
-- **No match**: lists available products
+Output scenarios:
+- **Single match** — product name, tier-1 flag, API list, `[System Hint]` SOP
+- **Multiple matches** — candidates listed; ask user to clarify
+- **No match** — all products listed by category; retry with a different keyword
 
-**For tier-1 products** (UHost, UDisk, UNet, VPC, ULB, UDB): also read `<skill-path>/references/tier1-workflows.md` for pre-built workflow templates.
+For **tier-1 products**: also read `<skill-path>/references/tier1-workflows.md` for pre-built workflow templates.
 
-**For cheapest/default/minimal requests**: do not load `<skill-path>/references/fast-create-template.md` immediately. First confirm the user wants fast-create with minimum usable defaults. Load that template only after the user agrees.
-
-**Speed tip for write operations**: when you already know the product and action, combine routing and doc fetch in a single bash call to save a turn:
+**Speed tip**: combine routing and doc fetch in one call when you already know the action:
 ```bash
-python3 <skill-path>/scripts/route_product.py uhost && python3 <skill-path>/scripts/fetch_api_doc.py UHost CreateUHostInstance
+python3 <skill-path>/scripts/route_product.py uhost && \
+python3 <skill-path>/scripts/fetch_api_doc.py UHost CreateUHostInstance
 ```
 
-If the request spans multiple products (e.g., "create a host, bind an EIP, attach a disk"), handle them sequentially — route each sub-task separately. When chaining operations, extract the returned resource ID (e.g., `UHostId`, `EIPId`) from each `call_api.py` response and inject it into the next step's parameters.
+## Step 2: Pre-flight Checklist (write operations only)
 
-### Step 1.5: Vague Create Intent Split
+Skip this step for read operations — go directly to Step 3.
 
-When the user asks to create a resource but key sizing parameters are missing, do not choose the fast path silently.
+Write operations cost money and fail silently when parameters are wrong. Cloud inventory changes in real-time — what worked yesterday may not work today. This checklist catches mismatches before they become API errors or billing surprises.
 
-Ask a short confirmation first:
-
-- Fast-create branch: "是否按最小可用默认配置快速创建？我会只做最小必要校验，然后给你确认表。"
-- Standard branch: "如果不是，我继续按标准流程收集规格、镜像、网络和计费参数。"
-
-Only after the user explicitly chooses fast-create may you load `<skill-path>/references/fast-create-template.md`.
-
-### Step 2: Pre-flight Checklist (write operations only)
-
-For **read operations**, skip to Step 3.
-
-Write operations (Create/Modify/Delete) fail silently or cost money when parameters are wrong. Cloud inventory and supported specs change in real-time — what worked yesterday may not work today. This checklist exists to catch mismatches before they become API errors or billing surprises.
-
-#### 2a. Fetch API Documentation
+### 2a. Fetch API Documentation
 
 ```bash
 python3 <skill-path>/scripts/fetch_api_doc.py <Product> <ActionName>
 ```
 
-Read **both** the `[System Hint]` block and the parameter table in the output. The hints are injected deterministically — they encode hard-won knowledge about prerequisites that the API doc alone doesn't make obvious.
+Read both the `[System Hint]` block and the parameter table. Hints encode hard-won knowledge about prerequisites that the API doc alone doesn't make obvious.
 
-#### 2b. Execute ALL [System Hint] Prerequisites — No Skipping
+### 2b. Execute All Prerequisites
 
-The `[System Hint]` block lists prerequisite API calls (e.g., DescribeImage, DescribeAvailableInstanceTypes). Execute **every single one** before constructing your parameters. This is not optional.
+The `[System Hint]` block lists prerequisite API calls (e.g., DescribeImage, DescribeAvailableInstanceTypes). Execute every single one before constructing parameters — this is not optional.
 
-Why: Cloud specs and inventory are live data — a region may support 64-core instances but not 128-core, a zone may be sold out of SSD, an image may be deprecated. Calling prerequisite APIs catches these mismatches upfront instead of getting a cryptic `RetCode: 8357 Resource not enough` after the user has already confirmed.
+Why: a region may support 64-core but not 128-core, a zone may be sold out of SSD, an image may be deprecated. Prerequisite calls catch these mismatches upfront instead of getting a cryptic `RetCode: 8357` after the user has already confirmed.
 
-If a required parameter needs a business ID you don't have (e.g., ImageId, VPCId, SubnetId), call the corresponding Describe API to list available options and present them to the user for selection.
+If a required parameter needs a business ID you don't have (ImageId, VPCId, SubnetId), call the corresponding Describe API and present options to the user.
 
-If a dedicated quick template exists for the intent, treat that template as the allowed minimum workflow. Load it only after the user explicitly agrees to fast-create. Do not add extra price checks, extra enumeration loops, or speculative retries beyond what the template says.
+### 2c. Build Parameters
 
-#### 2c. Build Parameters from Documentation
-
-Construct your params JSON strictly from the parameter table:
-- Required params marked **Yes** must all be provided
-- Nested array params (e.g., `Disks.N.IsBoot`, `Disks.N.Size`) — pass as JSON arrays, `call_api.py` auto-flattens to Dot.N.Key format
-- Apply billing defaults: `ChargeType=Month`, `Quantity=1`
-- When `LoginMode` is Password and user hasn't provided one:
+Construct params JSON strictly from the parameter table:
+- All required params (marked **Yes**) must be provided
+- Nested arrays (e.g., `Disks.N.IsBoot`) — pass as JSON arrays; `call_api.py` auto-flattens
+- Billing defaults: `ChargeType=Month`, `Quantity=1`
+- Password generation when `LoginMode=Password` and user hasn't provided one:
   ```bash
   python3 <skill-path>/scripts/gen_password.py
-  # Output: Password: Kx9#mTp4$vR2  Base64: S3g5I21UcDQkdlIy
   ```
 
-**⚡ Quick-create shortcut**: when the user asks for "最便宜", "最小配置", "默认配置", "随便开一台", or gives a vague create request and then explicitly agrees to fast-create — use the ⚡ defaults from `[System Hint]` and the dedicated fast-create template. Skip price queries and speculative instance type comparisons; only run the minimum live checks required by that template.
+Read `<skill-path>/references/parameter-guide.md` only when you need guidance on complex arrays, billing, or confirmation formatting.
 
-Read `<skill-path>/references/parameter-guide.md` ONLY if you need guidance on complex parameter arrays, billing defaults, or confirmation formatting.
+### 2d. Confirm Before Execution
 
-#### 2d. Show Confirmation — Wait for Explicit YES
-
-Present a Markdown table summarizing all parameters before execution:
+Present a Markdown table summarizing all parameters:
 
 | Parameter | Value | Description |
 |-----------|-------|-------------|
-| ChargeType | Month | **按月付费** |
 | Region | cn-bj2 | 地域 |
 | CPU | 2 | CPU核数 |
-| ... | ... | ... |
+| ChargeType | Month | 按月付费 |
 
-Follow the table with cost implications. DO NOT execute without explicit "YES" from the user. If a random password was generated, mention it will be displayed after creation.
+Follow with cost implications. Do not execute without explicit YES. If a password was generated, note it will be shown after creation.
 
-### Guardrails For Fragile Requests
+Write-operation guardrails:
+- Never call pricing APIs unless the user explicitly asks for cost comparison
+- Never retry a write operation with guessed parameter changes
+- Never translate region names from memory — use live API output
+- Never silently convert a vague request into fast-create — ask first
 
-For any write request, especially vague ones:
+## Step 3: Execute
 
-- Do not call pricing APIs unless the user explicitly asks for price comparison or cost estimation.
-- Do not retry the same write operation with guessed parameter changes.
-- Do not translate human region names into API region codes by memory; prefer injected examples or live API output.
-- Do not silently convert a vague create request into fast-create; ask first.
-- Do not create resources before showing a confirmation table and receiving explicit `YES`.
+### Broad vs. Targeted Queries
 
-### Step 3: Execute the API
-
-#### Multi-Project Awareness
-
-UCloud resources are isolated by project. Querying only the default project will miss resources in other projects — users often don't realize they have assets scattered across multiple projects.
-
-When the user's query implies broad scope — words like "所有", "全部", "我的", "有哪些", "all", "every", "list my" (e.g., "所有云主机", "我的主机", "帮我查一下有哪些EIP") — use `--all-projects` to auto-scan all projects in one call:
+UCloud resources are isolated by project. When the user's phrasing implies broad scope ("所有", "我的", "有哪些", "list my"), use `--all-projects`:
 
 ```bash
-python3 <skill-path>/scripts/call_api.py DescribeUHostInstance '{"Region":"cn-bj2","Limit":20}' \
+python3 <skill-path>/scripts/call_api.py DescribeUHostInstance \
+  '{"Region":"cn-bj2","Limit":20}' \
   --fields UHostId,Name,State,CPU,Memory,IPSet --all-projects
 ```
 
-The script internally calls `GetProjectList`, queries each project concurrently, and returns aggregated results grouped by project — no manual loops needed.
+Only query a single project when the user targets a specific resource or names a project explicitly.
 
-Only use `UCLOUD_PROJECT_ID` as the sole project when the user is asking about a specific resource (e.g., "查一下那台IP是10.x.x.x的主机") or has explicitly named a project.
-
-#### Execution
+### API Call Patterns
 
 ```bash
-# Basic execution
-python3 <skill-path>/scripts/call_api.py <Action> '<json_params>'
-
-# With response filtering (recommended for list/describe operations)
-python3 <skill-path>/scripts/call_api.py <Action> '<json_params>' --fields field1,field2,...
-```
-
-For ALL read/list operations, always inject `"Limit": 20` in your parameter JSON unless the user specifically asks for more or a different count.
-
-**Use `--fields`** for read operations that return large lists. This filters the response to only specified fields from the main data array. Always include key identifiers (e.g., UHostId, Name, State).
-
-Examples:
-```bash
-# Read — filter to key fields
-python3 <skill-path>/scripts/call_api.py DescribeUHostInstance '{"Region":"cn-bj2","Limit":10}' \
-  --fields UHostId,Name,State,CPU,Memory,IPSet
-
-# Read — unfiltered when you need full details
-python3 <skill-path>/scripts/call_api.py DescribeEIP '{"Region":"cn-bj2"}'
+# Read — filter to key fields (always include Limit: 20)
+python3 <skill-path>/scripts/call_api.py DescribeUHostInstance \
+  '{"Region":"cn-bj2","Limit":20}' --fields UHostId,Name,State,CPU,Memory,IPSet
 
 # Write — no --fields needed
 python3 <skill-path>/scripts/call_api.py CreateUHostInstance '{"Region":"cn-bj2",...}'
 ```
 
-### Step 4: Interpret the Response
+Use `--fields` for read operations to filter responses. Always include key identifiers (resource ID, Name, State).
 
-- `RetCode`: 0 = success, non-zero = error
-- **Auto-fix**: `call_api.py` automatically handles some common errors:
-  - Missing ProjectId → queries GetProjectList, auto-fills if only one project exists, otherwise lists options
-  - Missing Region → queries ListRegions and lists available regions
-  - Missing Zone → queries ListZones and lists available zones for the current region
-  - RetCode 299 (IAM error) → checks ProjectId first before treating as real permission denial
-- **`[Auto-Fix Suggestion]`**: for errors that can't be auto-retried, the script prints specific commands you can execute to resolve the issue. Follow these suggestions.
-- **`[System Hint]`**: general error diagnosis with actionable hints and error code reference links. Use these for context.
-- Success: extract key info (resource IDs, status, IPs) and present clearly
-- **If a random password was generated**: display it in plaintext — user's only chance to see it
-- For list operations: format results as a readable table
-- **Empty results**: if `call_api.py` prints a cross-project suggestion, follow it — the resource may exist in another project
+## Step 4: Handle the Response
 
-## Additional Resources
+- **`RetCode: 0`** = success. Extract key info (resource IDs, IPs, status) and present as a table.
+- **`RetCode: non-zero`** = error. The script provides two levels of help:
+  - `[Auto-Fix Suggestion]` — specific commands to resolve the issue; follow them
+  - `[System Hint]` — error diagnosis with reference links for context
+- **Auto-fix** (handled transparently by `call_api.py`): missing ProjectId/Region/Zone triggers automatic lookup and retry
+- **If a password was generated**: display it in plaintext — user's only chance to see it
+- **Empty results with cross-project suggestion**: follow it — the resource may exist in another project
 
-- **Tier-1 workflows**: `references/tier1-workflows.md` — UHost, UDisk, UNet, VPC, ULB, UDB
-- **Fast create template**: `references/fast-create-template.md` — deterministic workflow for "最便宜/最小配置/默认配置/随便开一台"
-- **Write operation guide**: `references/parameter-guide.md` — confirmation flow, billing, arrays, multi-project
-- **API documentation**: https://github.com/UCloudDoc-Team/api
+## References (load on demand)
 
-## Region Handling
-
-- User specifies a region → include it in params
-- Not specified → script falls back to `UCLOUD_REGION` env var
-- Neither set and API requires Region → ask the user
+| File | Content | When to read |
+|------|---------|--------------|
+| `references/tier1-workflows.md` | UHost, UDisk, UNet, VPC, ULB, UDB workflows | Tier-1 product operations |
+| `references/fast-create-template.md` | Deterministic fast-create workflow | User agrees to fast-create |
+| `references/parameter-guide.md` | Arrays, billing, confirmation formatting | Complex write operations |
